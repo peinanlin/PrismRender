@@ -1,0 +1,4 @@
+{"requestId":"stage17g-describe","command":"engine.describe","arguments":{}}
+{"requestId":"stage17g-d3d12-capture","command":"render.capture","arguments":{"api":"d3d12","stage":"tonemap","width":800,"height":450,"useCurrentWorld":false,"output":"automation/captures/stage17g-d3d12.bmp"}}
+{"requestId":"stage17g-vulkan-capture","command":"render.capture","arguments":{"api":"vulkan","stage":"tonemap","width":800,"height":450,"useCurrentWorld":false,"output":"automation/captures/stage17g-vulkan.bmp"}}
+{"requestId":"stage17g-performance","command":"performance.measure","arguments":{"api":"d3d12","stage":"tonemap","width":800,"height":450,"useCurrentWorld":false,"warmupCount":1,"sampleCount":5,"passBudgets":{"GBuffer":2.0,"DeferredLighting":2.0,"Tonemap":1.0,"Renderer":8.0},"cpuSpanBudgets":{"frame/FrameUpdate":4.0,"renderer/SceneRenderer":3.0,"rdg/GBuffer":1.0,"rdg/Tonemap":0.5},"enforceGpuBudgets":true,"enforceCpuBudgets":true}}

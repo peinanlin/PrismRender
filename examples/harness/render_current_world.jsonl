@@ -1,0 +1,12 @@
+{"requestId":"world-camera-create","command":"entity.create","arguments":{"id":"10000000-0000-4000-8000-000000000001","name":"AgentCamera"}}
+{"requestId":"world-camera-add","command":"component.add","arguments":{"entity":"10000000-0000-4000-8000-000000000001","component":"Camera","properties":{"fieldOfViewY":0.785398163,"nearPlane":0.1,"farPlane":250.0}}}
+{"requestId":"world-camera-transform","command":"component.set","arguments":{"entity":"10000000-0000-4000-8000-000000000001","component":"Transform","properties":{"position":[8.0,5.4,-12.0],"rotation":[-0.2,-0.55,0.0]}}}
+{"requestId":"world-sun-create","command":"entity.create","arguments":{"id":"10000000-0000-4000-8000-000000000002","name":"AgentSun"}}
+{"requestId":"world-sun-add","command":"component.add","arguments":{"entity":"10000000-0000-4000-8000-000000000002","component":"DirectionalLight","properties":{"direction":[-0.3,-0.12,-0.95],"color":[1.0,0.94,0.84],"intensity":1.35}}}
+{"requestId":"world-object-create","command":"entity.create","arguments":{"id":"10000000-0000-4000-8000-000000000003","name":"AgentCube"}}
+{"requestId":"world-object-transform","command":"component.set","arguments":{"entity":"10000000-0000-4000-8000-000000000003","component":"Transform","properties":{"position":[0.0,1.0,0.0],"rotation":[0.0,0.45,0.0],"scale":[1.5,1.5,1.5]}}}
+{"requestId":"world-object-renderer","command":"component.add","arguments":{"entity":"10000000-0000-4000-8000-000000000003","component":"MeshRenderer","properties":{"meshAsset":"builtin://editor-preview/meshes/cube","materialAsset":"builtin://editor-preview/materials/Preview_Warm","visible":true}}}
+{"requestId":"world-configure","command":"simulation.configure","arguments":{"fixedDeltaSeconds":0.016666666666666666,"randomSeed":42}}
+{"requestId":"world-step","command":"simulation.step","arguments":{"count":60}}
+{"requestId":"world-rdg","command":"rdg.describe","arguments":{"api":"d3d12","width":1280,"height":720,"output":"automation/reports/current-world-rdg-d3d12.json"}}
+{"requestId":"world-compare","command":"render.compare_apis","arguments":{"stage":"tonemap","width":1280,"height":720,"d3d12Output":"automation/captures/current-world-d3d12.bmp","vulkanOutput":"automation/captures/current-world-vulkan.bmp","enforce":true,"meanThreshold":0.001,"rmseThreshold":0.005,"changedThreshold":0.01}}

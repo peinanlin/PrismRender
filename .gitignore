@@ -1,0 +1,44 @@
+# CMake build trees
+/build*/
+
+# Generated validation and performance captures
+/frame-diagnostics-tests/
+/frame-performance-tests/
+/automation/
+
+# Local planning/workspace state
+/.codex/
+/.agents/
+/towork/
+/.git-publish/
+/.git-local-metadata-backup/
+
+# Archived tool bundles and architecture snapshots
+/artifacts/
+
+# IDE metadata
+/.idea/
+/.vs/
+
+# Runtime-local state
+/imgui.ini
+
+# Compiler outputs accidentally emitted at the source root
+/*.obj
+/*.pdb
+/*.ilk
+
+# Locally downloaded RenderDoc packages
+/artifacts/renderdoc-analysis/RenderDoc_*/
+/artifacts/renderdoc-analysis/RenderDoc_*.zip
+
+# Slang SDK runtime/tool binaries are fetched locally by the build setup
+/third_party/slang/bin/
+/third_party/slang/lib/
+
+# Root-level local run logs and process output
+/build-*.log
+/build-*.out
+/build-*.err
+/*.out
+/*.err

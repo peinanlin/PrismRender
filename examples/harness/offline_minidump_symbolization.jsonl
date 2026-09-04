@@ -1,0 +1,2 @@
+{"requestId":"stage17i-inspect-crash","command":"crash.inspect","arguments":{"path":"automation/reports/process/example.crash.json"}}
+{"requestId":"stage17i-symbolize-crash","command":"crash.symbolize","arguments":{"dumpPath":"automation/reports/process/example.dmp","executablePath":"build-windows-ci/Debug/PrismRender.exe","pdbPath":"build-windows-ci/Debug/PrismRender.pdb","maximumFrames":128,"requireIdentityMatch":true,"output":"automation/reports/symbolized/example.symbolized.json"}}

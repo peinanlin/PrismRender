@@ -1,0 +1,48 @@
+{
+  "format": "PrismArchitecturePerformanceScenarios",
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "empty-editor-dual-view",
+      "workload": "empty",
+      "binaryKind": "editor",
+      "activeViews": "game+scene",
+      "expectedEditorEnabled": true
+    },
+    {
+      "id": "empty-editor-game-only",
+      "workload": "empty",
+      "binaryKind": "editor",
+      "activeViews": "game",
+      "expectedEditorEnabled": true
+    },
+    {
+      "id": "empty-standalone-game-only",
+      "workload": "empty",
+      "binaryKind": "standalone",
+      "activeViews": "game",
+      "expectedEditorEnabled": false
+    },
+    {
+      "id": "preview-editor-dual-view",
+      "workload": "preview",
+      "binaryKind": "editor",
+      "activeViews": "game+scene",
+      "expectedEditorEnabled": true
+    },
+    {
+      "id": "preview-editor-game-only",
+      "workload": "preview",
+      "binaryKind": "editor",
+      "activeViews": "game",
+      "expectedEditorEnabled": true
+    },
+    {
+      "id": "preview-standalone-game-only",
+      "workload": "preview",
+      "binaryKind": "standalone",
+      "activeViews": "game",
+      "expectedEditorEnabled": false
+    }
+  ]
+}

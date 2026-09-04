@@ -1,0 +1,83 @@
+name: Windows Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        preset:
+          - windows-ci
+          - windows-vulkan-only-ci
+    runs-on: windows-2025
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Cache fetched dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            build-windows-ci/_deps
+            build-windows-vulkan-ci/_deps
+          key: ${{ runner.os }}-${{ matrix.preset }}-deps-${{ hashFiles('CMakeLists.txt', 'CMakePresets.json') }}
+
+      - name: Configure
+        run: cmake --preset ${{ matrix.preset }}
+
+      - name: Build
+        run: cmake --build --preset ${{ matrix.preset }}
+
+      - name: Test CPU-safe suite
+        run: ctest --preset ${{ matrix.preset }}
+
+      - name: MCP stdio smoke test
+        if: matrix.preset == 'windows-ci'
+        shell: pwsh
+        run: |
+          $messages = @(
+            '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}',
+            '{"jsonrpc":"2.0","id":2,"method":"tools/list"}',
+            '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"prism.describe","arguments":{}}}'
+          ) -join "`n"
+          $output = $messages | & .\build-windows-ci\RelWithDebInfo\PrismMcpServer.exe --project-root .
+          $responses = @($output | ForEach-Object { $_ | ConvertFrom-Json })
+          $description = $responses[2].result.structuredContent
+          if ($responses.Count -ne 3 -or
+              $responses[1].result.tools.Count -ne 2 -or
+              -not $description.success -or
+              -not $description.data.capabilities.assetStreamingRuntimeValidation -or
+              $description.data.commands -notcontains "asset.streaming.validate") {
+            throw "PrismMcpServer smoke test failed."
+          }
+
+      - name: Upload diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-${{ matrix.preset }}-diagnostics
+          path: |
+            build-windows-ci/Testing/Temporary/LastTest.log
+            build-windows-vulkan-ci/Testing/Temporary/LastTest.log
+            automation/reports
+            automation/tests
+          if-no-files-found: ignore

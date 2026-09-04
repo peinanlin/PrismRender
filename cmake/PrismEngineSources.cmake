@@ -1,0 +1,19 @@
+set(PRISM_ENGINE_SOURCES
+    src/Engine/EntityId.cpp
+    src/Engine/Reflection.cpp
+    src/Engine/World.cpp
+    src/Engine/WorldSerializer.cpp
+    src/Engine/CommandSystem.cpp
+    src/Engine/SceneChangeTracker.cpp
+)
+
+set(PRISM_ENGINE_HEADERS
+    src/Core/Math/Double3.h
+    src/Engine/EntityId.h
+    src/Engine/Components.h
+    src/Engine/Reflection.h
+    src/Engine/World.h
+    src/Engine/WorldSerializer.h
+    src/Engine/CommandSystem.h
+    src/Engine/SceneChangeTracker.h
+)

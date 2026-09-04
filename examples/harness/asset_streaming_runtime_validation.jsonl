@@ -1,0 +1,1 @@
+{"requestId":"asset-streaming-runtime-validation","command":"asset.streaming.validate","arguments":{"width":1600,"height":900,"timeoutMilliseconds":120000,"residentBudgetMb":512,"maximumFrameCount":120,"meanThreshold":0.001,"rmseThreshold":0.005,"changedThreshold":0.001,"pixelTolerance":4,"enforce":true}}

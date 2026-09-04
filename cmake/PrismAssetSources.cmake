@@ -1,0 +1,47 @@
+set(PRISM_ASSET_SOURCES
+    src/Asset/AssetCache.cpp
+    src/Asset/AssetDatabase.cpp
+    src/Asset/AssetImportService.cpp
+    src/Asset/AssetRegistry.cpp
+    src/Asset/AssetRuntimeLoader.cpp
+    src/Asset/AssetStreamingManager.cpp
+    src/Asset/CookedAssetIO.cpp
+    src/Asset/EnvironmentMapLoader.cpp
+    src/Asset/GltfLoader.cpp
+    src/Asset/IblEnvironmentBuilder.cpp
+    src/Asset/ImageLoader.cpp
+    src/Asset/Material.cpp
+    src/Asset/MaterialAsset.cpp
+    src/Asset/Mesh.cpp
+    src/Asset/MeshAsset.cpp
+    src/Asset/ShaderLoader.cpp
+    src/Asset/ShaderManager.cpp
+    src/Asset/SlangShaderCompiler.cpp
+    src/Asset/Texture.cpp
+    src/Asset/TextureAsset.cpp
+)
+
+set(PRISM_ASSET_HEADERS
+    src/Asset/AssetCache.h
+    src/Asset/AssetDatabase.h
+    src/Asset/AssetHandle.h
+    src/Asset/AssetImportService.h
+    src/Asset/AssetRegistry.h
+    src/Asset/AssetRuntimeLoader.h
+    src/Asset/AssetStreamingManager.h
+    src/Asset/CookedAssetIO.h
+    src/Asset/EnvironmentMapLoader.h
+    src/Asset/GltfLoader.h
+    src/Asset/IblEnvironmentBuilder.h
+    src/Asset/ImageLoader.h
+    src/Asset/IShaderCompiler.h
+    src/Asset/Material.h
+    src/Asset/MaterialAsset.h
+    src/Asset/Mesh.h
+    src/Asset/MeshAsset.h
+    src/Asset/ShaderLoader.h
+    src/Asset/ShaderManager.h
+    src/Asset/SlangShaderCompiler.h
+    src/Asset/Texture.h
+    src/Asset/TextureAsset.h
+)

@@ -1,0 +1,7 @@
+{"requestId":"example-001","command":"engine.describe","arguments":{}}
+{"requestId":"example-002","command":"transaction.begin","arguments":{}}
+{"requestId":"example-003","command":"entity.create","arguments":{"name":"AgentCube"}}
+{"requestId":"example-004","command":"simulation.configure","arguments":{"fixedDeltaSeconds":0.016666666666666666,"randomSeed":42}}
+{"requestId":"example-005","command":"simulation.step","arguments":{"count":60}}
+{"requestId":"example-006","command":"transaction.commit","arguments":{}}
+{"requestId":"example-007","command":"world.status","arguments":{}}

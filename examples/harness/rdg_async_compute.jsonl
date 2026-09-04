@@ -1,0 +1,3 @@
+{"requestId":"stage17l-d3d12-rdg","command":"rdg.describe","arguments":{"api":"d3d12","width":640,"height":360,"useCurrentWorld":false,"output":"automation/reports/stage17l-d3d12-rdg.json","timeoutMilliseconds":120000}}
+{"requestId":"stage17l-vulkan-rdg","command":"rdg.describe","arguments":{"api":"vulkan","width":640,"height":360,"useCurrentWorld":false,"output":"automation/reports/stage17l-vulkan-rdg.json","timeoutMilliseconds":120000}}
+{"requestId":"stage17l-parity","command":"render.compare_apis","arguments":{"stage":"tonemap","width":640,"height":360,"useCurrentWorld":false,"d3d12Output":"automation/captures/stage17l-d3d12.bmp","vulkanOutput":"automation/captures/stage17l-vulkan.bmp","enforce":true,"timeoutMilliseconds":120000}}

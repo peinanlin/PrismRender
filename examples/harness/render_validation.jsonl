@@ -1,0 +1,6 @@
+{"requestId":"describe-render-tools","command":"engine.describe","arguments":{}}
+{"requestId":"compile-mesh-dxil","command":"shader.compile","arguments":{"path":"assets/shaders/Mesh.hlsl","entryPoint":"PSMain","stage":"pixel","format":"dxil","output":"automation/shaders/Mesh.PSMain.dxil"}}
+{"requestId":"compile-mesh-spirv","command":"shader.compile","arguments":{"path":"assets/shaders/Mesh.hlsl","entryPoint":"PSMain","stage":"pixel","format":"spirv","output":"automation/shaders/Mesh.PSMain.spv"}}
+{"requestId":"rdg-d3d12","command":"rdg.describe","arguments":{"api":"d3d12","output":"automation/reports/rdg-d3d12.json","useCurrentWorld":false}}
+{"requestId":"rdg-vulkan","command":"rdg.describe","arguments":{"api":"vulkan","output":"automation/reports/rdg-vulkan.json","useCurrentWorld":false}}
+{"requestId":"compare-tonemap","command":"render.compare_apis","arguments":{"stage":"tonemap","d3d12Output":"automation/captures/d3d12.bmp","vulkanOutput":"automation/captures/vulkan.bmp","useCurrentWorld":false,"enforce":true,"meanThreshold":0.001,"rmseThreshold":0.005,"changedThreshold":0.01}}

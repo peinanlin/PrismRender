@@ -1,0 +1,66 @@
+set(PRISM_APPLICATION_SOURCES
+    src/Core/Application/ApplicationComposition.cpp
+    src/Core/Application/AssetRuntimeCoordinator.cpp
+    src/Core/Application/CaptureAutomationController.cpp
+    src/Core/Application/WaterValidationSequence.cpp
+    src/Core/Application/PerformanceWindowPosition.h
+    src/Core/Application/PerformanceWindowFocus.h
+    src/Core/Application/PerformanceActiveViews.h
+    src/Core/Application/RenderExecutionService.cpp
+    src/Core/Application/RenderControlTicket.cpp
+    src/Core/Application/RenderFrameExecutionState.cpp
+    src/Core/Application/RenderFrameQueue.cpp
+    src/Core/Application/RenderRuntimeExecutionTarget.cpp
+    src/Core/ApplicationCommandLine.cpp
+    src/Core/ApplicationLauncher.cpp
+    src/Core/ApplicationHost.cpp
+    src/Core/ApplicationHostScene.cpp
+    src/Core/Application/FrameCaptureSequence.cpp
+    src/Core/Application/FrameRateLimiter.cpp
+    src/Core/Application/FramePacingAutomation.cpp
+    src/Core/Application/FramePerformanceRecorder.cpp
+    src/Core/Application/FramePerformanceSampling.cpp
+    src/Core/Profiling/FrameProfilerReport.cpp
+    src/Core/Profiling/ProfilingLevelSchedule.cpp
+)
+
+set(PRISM_APPLICATION_HEADERS
+    src/Core/Application/ApplicationComposition.h
+    src/Core/Application/AssetRuntimeCoordinator.h
+    src/Core/Application/CaptureAutomationController.h
+    src/Core/Application/WaterValidationSequence.h
+    src/Core/ApplicationCommandLine.h
+    src/Core/ApplicationLauncher.h
+    src/Core/ApplicationHost.h
+    src/Core/Application/FrameCaptureSequence.h
+    src/Core/Application/FrameRateLimiter.h
+    src/Core/Application/FramePacingAutomation.h
+    src/Core/Application/FramePerformanceRecorder.h
+    src/Core/Application/FramePerformanceSampling.h
+    src/Core/Application/RenderControlCommand.h
+    src/Core/Application/RenderControlTicket.h
+    src/Core/Application/RenderExecutionService.h
+    src/Core/Application/RenderFrameQueue.h
+    src/Core/Application/RenderFrameExecutionState.h
+    src/Core/Application/RenderRuntimeExecutionTarget.h
+    src/Core/Profiling/FrameProfilerReport.h
+    src/Core/Profiling/ProfilingLevelSchedule.h
+    src/Core/ProcessDiagnostics.h
+)
+
+if(WIN32)
+    list(APPEND PRISM_APPLICATION_SOURCES
+        src/Core/ProcessDiagnostics.cpp)
+else()
+    list(APPEND PRISM_APPLICATION_SOURCES
+        src/Core/ProcessDiagnosticsPosix.cpp)
+endif()
+set(PRISM_DIAGNOSTICS_SOURCES
+    src/Core/BuildSymbolIdentity.cpp
+    src/Core/MinidumpSymbolizer.cpp
+)
+
+set(PRISM_DIAGNOSTICS_HEADERS
+    src/Core/BuildSymbolIdentity.h
+    src/Core/MinidumpSymbolizer.h
+)

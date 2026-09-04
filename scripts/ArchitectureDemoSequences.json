@@ -1,0 +1,35 @@
+{
+  "format": "PrismArchitectureDemoSequences",
+  "version": 1,
+  "policy": "Each case runs frames 1..endFrame in one deterministic 1/60 process. Samples are images plus frame diagnostics; controls are applied before rendering their named logical frame.",
+  "coverage": {
+    "ocean": ["ocean", "waveworks-ocean", "hpwater-ocean"],
+    "fluid": ["pbf", "fluid-render", "fluid-caustics", "fluid-toon"],
+    "taa-control": ["post-process"],
+    "shadow-control": ["shadows"],
+    "streaming-control": ["streaming"],
+    "dual-view-control": ["waveworks-ocean"]
+  },
+  "cases": [
+    {"scene":"preview","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"No dedicated control toggle; validates continuous fixed-input Editor rendering."},
+    {"scene":"showcase","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"No dedicated control toggle; validates the complete showcase over one process."},
+    {"scene":"reflections","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"Reflection behavior is sampled continuously; its enable/disable fixture remains a separate GPU test."},
+    {"scene":"shadows","frames":[30,44,45,46,59,60,61,90],"endFrame":90,"view":"game","actions":[{"frame":45,"type":"set-shadows","enabled":false},{"frame":60,"type":"set-shadows","enabled":true}],"assetStreaming":false,"waterLifecycle":false,"tags":["shadow-control"],"applicability":"Disables and restores shadows at exact logical-frame boundaries."},
+    {"scene":"lights","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"Light animation is not driven by a P0 control; validates stable continuous rendering."},
+    {"scene":"gpu-driven","frames":[30,31,32,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["temporal"],"applicability":"Samples adjacent frames for culling/indirect-draw continuity; no quality override is applied."},
+    {"scene":"post-process","frames":[30,44,45,46,59,60,61,90],"endFrame":90,"view":"game","actions":[{"frame":45,"type":"set-taa","enabled":false},{"frame":60,"type":"set-taa","enabled":true}],"assetStreaming":false,"waterLifecycle":false,"tags":["taa-control"],"applicability":"Disables and restores TAA at exact logical-frame boundaries and observes history recovery."},
+    {"scene":"render-graph","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"No scene-specific control; graph structure is recorded at every frame and sampled three times."},
+    {"scene":"materials","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"Material feature switches remain at Demo defaults; validates continuous output without overrides."},
+    {"scene":"streaming","frames":[1,29,30,31,60,90,120],"endFrame":120,"view":"game","actions":[{"frame":30,"type":"activate-streaming"}],"assetStreaming":true,"waterLifecycle":false,"tags":["streaming-control"],"applicability":"Async decoding/upload runs from startup; scene activation is held until frame 30 and must complete by frame 120."},
+    {"scene":"atmosphere","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"Atmosphere parameter controls are covered by their fixture; P0 sequence preserves Demo defaults."},
+    {"scene":"large-world","frames":[30,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fixed-input"],"applicability":"No navigation injection in P0; validates camera-relative output across one process."},
+    {"scene":"terrain-vt","frames":[30,31,32,60,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["temporal"],"applicability":"Samples adjacent frames for terrain/virtual-texture residency continuity; brush controls are not applicable to this fixed baseline."},
+    {"scene":"ocean","frames":[30,31,32,60,61,62,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["ocean","temporal"],"applicability":"Forward FFT ocean has no HPWater lifecycle controls; adjacent frames prove simulation advancement."},
+    {"scene":"waveworks-ocean","frames":[30,31,32,60,61,62,90],"endFrame":90,"view":"scene","actions":[{"frame":30,"type":"refresh-scene"},{"frame":31,"type":"refresh-scene"},{"frame":32,"type":"refresh-scene"},{"frame":60,"type":"refresh-scene"},{"frame":61,"type":"refresh-scene"},{"frame":62,"type":"refresh-scene"},{"frame":90,"type":"refresh-scene"}],"assetStreaming":false,"waterLifecycle":false,"tags":["dual-view-control","ocean","temporal"],"applicability":"WaveWorks Scene view is on-demand; explicit refreshes verify Game+Scene shared simulation without a stale capture."},
+    {"scene":"hpwater-ocean","frames":[30,31,32,60,61,62,73,85,120,180,240,301,330],"endFrame":330,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":true,"tags":["ocean","temporal","water-lifecycle"],"applicability":"Uses the fixed HPWater reset/resize/three-ocean scene-switch lifecycle; frame 301 observes recovery after the debug-view sweep ends without treating a flat debug buffer as final Demo output."},
+    {"scene":"pbf","frames":[30,31,32,60,61,62,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fluid","temporal"],"applicability":"Adjacent frames validate deterministic PBF advancement; reset is covered by the HPWater lifecycle and Fluid GPU fixtures."},
+    {"scene":"fluid-render","frames":[30,31,32,60,61,62,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fluid","temporal"],"applicability":"Adjacent samples cover PBF plus screen-space fluid history without changing quality."},
+    {"scene":"fluid-caustics","frames":[30,31,32,60,61,62,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fluid","temporal"],"applicability":"Adjacent samples cover simulation, fluid reconstruction and caustics in one process."},
+    {"scene":"fluid-toon","frames":[30,31,32,60,61,62,90],"endFrame":90,"view":"game","actions":[],"assetStreaming":false,"waterLifecycle":false,"tags":["fluid","temporal"],"applicability":"Adjacent samples cover the deterministic PBF path and toon composite without overrides."}
+  ]
+}

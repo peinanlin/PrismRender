@@ -1,0 +1,52 @@
+{
+  "format": "PrismArchitectureVisualBaselineRevisions",
+  "version": 1,
+  "revision": "20260828-fluid-determinism-approved",
+  "approval": "User replied 好的，请继续 to the explicit request to register exactly PBF D3D12, PBF Vulkan and Fluid Toon Vulkan; preserve old images and unchanged V2 thresholds.",
+  "reason": "Stable particle-ID traversal after atomic grid insertion; solver equations, Demo defaults and simulation step count unchanged. Old-image comparisons remain failed, not retrospectively passed.",
+  "evidenceRoot": "artifacts/architecture-refactor/20260828-hpwater-complete/P0",
+  "sourceSnapshot": "artifacts/architecture-refactor/20260828-p0-fluid-determinism-partial/snapshot-manifest.json",
+  "sourceSnapshotSha256": "50C04209429DE131F4245BFD316B481A890CAD026A9A97A7099F32C9A80610BB",
+  "binarySha256": "C42D75E6E948AC02528615D64E815F428185F5097D9C977E27B648EF7E09DCF4",
+  "scope": {
+    "configuration": "RelWithDebInfo",
+    "editorEnabled": true,
+    "view": "game",
+    "activeViews": 1,
+    "width": 1280,
+    "height": 800,
+    "frame": 30,
+    "queueMode": "native",
+    "deterministic": true,
+    "settings": "Demo defaults; no additional camera, quality or simulation overrides"
+  },
+  "cases": [
+    {
+      "scene": "pbf",
+      "backend": "d3d12",
+      "repeatRun": "d3d12/pbf-sorted-repeat-native-02",
+      "sha256": "18F553FD15B17FDA1AA2D99B0DA5D664672E1EAA7AD966197F6F4F47E9166ECA",
+      "previousImage": "d3d12/optional-all-demos-native-02/pbf-game-f30-r1.bmp",
+      "previousSha256": "C9192915C98F2372EED35A1B0DF29F158EC31D600444645129EF849EFD4B0B45",
+      "previousComparison": "comparisons/pbf-sorted-d3d12-old-r1-01/index.json"
+    },
+    {
+      "scene": "pbf",
+      "backend": "vulkan",
+      "repeatRun": "vulkan/pbf-sorted-repeat-native-02",
+      "sha256": "FB88763D0E5A5E7843A11EBA8F62DC5DCDC3C222CFFFC5AD82F485AC27C74810",
+      "previousImage": "vulkan/optional-original-all-demos-native-01/pbf-game-f30-r1.bmp",
+      "previousSha256": "145897BBC75C9912146141D31F553E241562F165C615E8BB2B772E53FB418AB5",
+      "previousComparison": "comparisons/pbf-sorted-vulkan-original-01/index.json"
+    },
+    {
+      "scene": "fluid-toon",
+      "backend": "vulkan",
+      "repeatRun": "vulkan/fluid-toon-sorted-repeat-native-01",
+      "sha256": "7F76EFEA6AB80F3F8C17AB0D2571616E5DA02C0819D27999FCB79564847572A0",
+      "previousImage": "vulkan/optional-original-all-demos-native-01/fluid-toon-game-f30-r1.bmp",
+      "previousSha256": "4F6FB792C925B668C14A738F99D597200100AF939D530E526566DA3D678049B9",
+      "previousComparison": "comparisons/fluid-sorted-vulkan-fluid-toon-original-01/index.json"
+    }
+  ]
+}

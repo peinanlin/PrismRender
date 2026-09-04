@@ -1,0 +1,198 @@
+{
+  "entities": [
+    {
+      "components": {
+        "MeshRenderer": {
+          "materialAsset": "builtin://waveworks-ocean-lab/materials/OceanSurface",
+          "meshAsset": "builtin://waveworks-ocean-lab/meshes/Inner-ring",
+          "visible": true
+        },
+        "Name": {
+          "value": "WaveWorksOcean_InnerRing"
+        },
+        "Transform": {
+          "position": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "id": "1562fa9e-f1a9-424b-b10b-5a21515622dc"
+    },
+    {
+      "components": {
+        "Camera": {
+          "farPlane": 100000.0,
+          "fieldOfViewY": 1.0471975803375244,
+          "nearPlane": 0.10000000149011612
+        },
+        "Name": {
+          "value": "EditorCamera"
+        },
+        "Transform": {
+          "position": [
+            -3.2104880809783936,
+            3.7121567726135254,
+            4.114631175994873
+          ],
+          "rotation": [
+            -0.03890417888760567,
+            2.1362152099609375,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "id": "26c8a598-449e-4a3a-a6c8-a598449eba3a"
+    },
+    {
+      "components": {
+        "DirectionalLight": {
+          "color": [
+            0.7352941036224365,
+            0.5667073130607605,
+            0.20544984936714172
+          ],
+          "direction": [
+            -0.8058900237083435,
+            -0.3420200049877167,
+            0.4835300147533417
+          ],
+          "intensity": 4.449999809265137
+        },
+        "Name": {
+          "value": "DirectionalLight"
+        },
+        "Transform": {
+          "position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rotation": [
+            -0.34902244806289673,
+            -1.0303804874420166,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "id": "4c7120cc-3c67-4436-981d-822483c11be3"
+    },
+    {
+      "components": {
+        "MeshRenderer": {
+          "materialAsset": "builtin://waveworks-ocean-lab/materials/OceanSurface",
+          "meshAsset": "builtin://waveworks-ocean-lab/meshes/Outer-ring",
+          "visible": true
+        },
+        "Name": {
+          "value": "WaveWorksOcean_OuterRing"
+        },
+        "Transform": {
+          "position": [
+            0.0,
+            -0.23999999463558197,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "id": "910d80fd-ecda-4de1-9172-130af89c3367"
+    },
+    {
+      "components": {
+        "MeshRenderer": {
+          "materialAsset": "builtin://waveworks-ocean-lab/materials/OceanUnderlay",
+          "meshAsset": "builtin://waveworks-ocean-lab/meshes/underlay",
+          "visible": true
+        },
+        "Name": {
+          "value": "Ocean_Underlay"
+        },
+        "Transform": {
+          "position": [
+            0.0,
+            -10.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "id": "96f382b8-f383-4cdd-ab4d-d5f867a43c13"
+    },
+    {
+      "components": {
+        "MeshRenderer": {
+          "materialAsset": "builtin://waveworks-ocean-lab/materials/OceanSurface",
+          "meshAsset": "builtin://waveworks-ocean-lab/meshes/Middle-ring",
+          "visible": true
+        },
+        "Name": {
+          "value": "WaveWorksOcean_MiddleRing"
+        },
+        "Transform": {
+          "position": [
+            0.0,
+            -0.11999999731779099,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "id": "bcbd8711-e97b-4dea-b5a0-ceac5c92922c"
+    }
+  ],
+  "format": "PrismEngineWorld",
+  "idGenerator": {
+    "counter": 6,
+    "seed": 5787769093252924238
+  },
+  "version": 2
+}

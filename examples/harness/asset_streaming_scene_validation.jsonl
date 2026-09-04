@@ -1,0 +1,2 @@
+{"requestId":"stage29-reimport","command":"asset.reimport","arguments":{"path":"assets/scenes/StartupScene.gltf"}}
+{"requestId":"stage29-describe-scene","command":"asset.describe","arguments":{"assetPath":"prism-asset://634f6359-9c7d-5dc9-9e07-0046822e77d3"}}

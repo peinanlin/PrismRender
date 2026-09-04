@@ -1,0 +1,91 @@
+set(PRISM_RHI_SOURCES
+    src/RHI/DeferredCommandContext.cpp
+    src/RHI/FramePacing.cpp
+    src/RHI/GraphicsApi.cpp
+    src/RHI/GraphicsResources.cpp
+    src/RHI/GraphicsTypes.cpp
+    src/RHI/PipelineState.cpp
+    src/RHI/RayTracing.cpp
+    src/RHI/RayTracingValidation.cpp
+    src/RHI/RenderBackendFactory.cpp
+    src/RHI/Rendering.cpp
+    src/RHI/TransientResources.cpp
+    src/RHI/ShaderTypes.cpp
+    src/RHI/ShaderLayoutBuilder.cpp
+    src/RHI/Profiling/GpuProfiler.cpp
+    src/RHI/Vulkan/VulkanLoader.cpp
+    src/RHI/Vulkan/VulkanTypeConversions.cpp
+    src/RHI/Vulkan/VulkanContext.cpp
+    src/RHI/Vulkan/VulkanSwapChain.cpp
+    src/RHI/Vulkan/VulkanUploadQueue.cpp
+    src/RHI/Vulkan/VulkanDeviceSelection.cpp
+    src/RHI/Vulkan/VulkanRenderBackend.cpp
+    src/RHI/Vulkan/VulkanParallelCommandRecording.cpp
+    src/RHI/Vulkan/VulkanPipeline.cpp
+    src/RHI/Vulkan/VulkanResources.cpp
+    src/RHI/Vulkan/VulkanTransientResources.cpp
+)
+
+set(PRISM_RHI_HEADERS
+    src/RHI/FramePacing.h
+    src/RHI/FramePacingStatistics.h
+    src/RHI/DeferredCommandContext.h
+    src/RHI/GraphicsApi.h
+    src/RHI/DeviceCapabilities.h
+    src/RHI/GraphicsAdapterInfo.h
+    src/RHI/GraphicsResources.h
+    src/RHI/GraphicsTypes.h
+    src/RHI/PipelineState.h
+    src/RHI/PipelineCreationStatistics.h
+    src/RHI/RayTracing.h
+    src/RHI/RayTracingValidation.h
+    src/RHI/RenderBackendFactory.h
+    src/RHI/Rendering.h
+    src/RHI/TransientResources.h
+    src/RHI/IGraphicsDevice.h
+    src/RHI/ICommandContext.h
+    src/RHI/IFrameContext.h
+    src/RHI/IRenderBackend.h
+    src/RHI/ShaderTypes.h
+    src/RHI/ShaderLayoutBuilder.h
+    src/RHI/Profiling/GpuProfiler.h
+    src/RHI/Vulkan/VulkanLoader.h
+    src/RHI/Vulkan/VulkanTypeConversions.h
+    src/RHI/Vulkan/VulkanContext.h
+    src/RHI/Vulkan/VulkanDeviceSelection.h
+    src/RHI/Vulkan/VulkanRenderBackend.h
+    src/RHI/Vulkan/VulkanParallelCommandRecording.h
+    src/RHI/Vulkan/VulkanPipeline.h
+    src/RHI/Vulkan/VulkanResources.h
+    src/RHI/Vulkan/VulkanTransientResources.h
+)
+
+if(PRISM_RENDER_ENABLE_D3D12)
+    list(APPEND PRISM_RHI_SOURCES
+        src/RHI/D3D12/D3D12Context.cpp
+        src/RHI/D3D12/D3D12CommandContextAdapter.cpp
+        src/RHI/D3D12/D3D12GraphicsDevice.cpp
+        src/RHI/D3D12/D3D12RenderBackend.cpp
+        src/RHI/D3D12/D3D12PipelineView.cpp
+        src/RHI/D3D12/D3D12Presentation.cpp
+        src/RHI/D3D12/D3D12Resources.cpp
+        src/RHI/D3D12/D3D12SamplerTable.cpp
+        src/RHI/D3D12/D3D12TransientResources.cpp
+        src/RHI/D3D12/D3D12TypeConversions.cpp
+        src/RHI/D3D11/D3D11TypeConversions.cpp
+    )
+    list(APPEND PRISM_RHI_HEADERS
+        src/RHI/D3D12/D3D12Context.h
+        src/RHI/D3D12/D3D12TypeConversions.h
+        src/RHI/D3D12/D3D12CommandContextAdapter.h
+        src/RHI/D3D12/D3D12GraphicsDevice.h
+        src/RHI/D3D12/D3D12RenderBackend.h
+        src/RHI/D3D12/D3D12PipelineView.h
+        src/RHI/D3D12/D3D12Presentation.h
+        src/RHI/D3D12/D3D12Resources.h
+        src/RHI/D3D12/D3D12SamplerTable.h
+        src/RHI/D3D12/D3D12Debug.h
+        src/RHI/D3D12/D3D12TransientResources.h
+        src/RHI/D3D11/D3D11TypeConversions.h
+    )
+endif()

@@ -1,0 +1,373 @@
+{
+  "format": "PrismModuleBoundaries",
+  "version": 1,
+  "pathBase": "project-root",
+  "ownershipPolicy": {
+    "productionSourcePatterns": ["src/**/*.cpp", "src/**/*.c"],
+    "resolution": "explicitOverridesThenMostSpecificRule",
+    "requireExactlyOneOwner": true,
+    "headersDefaultToInternal": true,
+    "forbidProductionSourceDuplication": true,
+    "testRecompilationRequiresException": true
+  },
+  "modules": [
+    {
+      "target": "PrismCore",
+      "sourceRules": [
+        "src/Core/CpuTrace.cpp",
+        "src/Core/DiagnosticLog.cpp",
+        "src/Core/Environment.cpp",
+        "src/Core/FrameTimer.cpp",
+        "src/Core/Profiling/FrameProfiler.cpp",
+        "src/Core/Profiling/SceneViewRefreshController.cpp",
+        "src/Core/Threading/**/*.cpp"
+      ],
+      "publicHeaders": [
+        "src/Core/Assert.h",
+        "src/Core/CpuTrace.h",
+        "src/Core/DiagnosticLog.h",
+        "src/Core/Environment.h",
+        "src/Core/FrameTimer.h",
+        "src/Core/Math/**/*.h",
+        "src/Core/Profiling/FrameProfiler.h",
+        "src/Core/Profiling/FrameProfilerSnapshot.h",
+        "src/Core/Profiling/SceneViewRefreshController.h",
+        "src/Core/Threading/**/*.h"
+      ],
+      "directDependencies": [],
+      "notes": "Generic utilities only; Core/Application, host policy and diagnostics are explicit overrides below."
+    },
+    {
+      "target": "PrismPlatform",
+      "sourceRules": [
+        "src/Platform/Window.cpp",
+        "src/Platform/WindowDiagnostics.cpp"
+      ],
+      "publicHeaders": [
+        "src/Platform/Window.h",
+        "src/Platform/WindowDiagnostics.h"
+      ],
+      "internalHeaders": [],
+      "directDependencies": ["PrismCore"],
+      "thirdPartyDependencies": ["glfw"],
+      "notes": "FileDialog is intentionally not Platform; it is Editor policy/UI."
+    },
+    {
+      "target": "PrismRHI",
+      "sourceRules": [
+        "src/RHI/**/*.cpp"
+      ],
+      "publicHeaders": [
+        "src/RHI/DeviceCapabilities.h",
+        "src/RHI/DeferredCommandContext.h",
+        "src/RHI/FramePacing.h",
+        "src/RHI/FramePacingStatistics.h",
+        "src/RHI/GraphicsAdapterInfo.h",
+        "src/RHI/GraphicsApi.h",
+        "src/RHI/GraphicsResources.h",
+        "src/RHI/GraphicsTypes.h",
+        "src/RHI/ICommandContext.h",
+        "src/RHI/IFrameContext.h",
+        "src/RHI/IGraphicsDevice.h",
+        "src/RHI/IRenderBackend.h",
+        "src/RHI/PipelineCreationStatistics.h",
+        "src/RHI/PipelineState.h",
+        "src/RHI/RayTracing.h",
+        "src/RHI/RayTracingValidation.h",
+        "src/RHI/RenderBackendFactory.h",
+        "src/RHI/Rendering.h",
+        "src/RHI/ShaderLayoutBuilder.h",
+        "src/RHI/ShaderTypes.h",
+        "src/RHI/TransientResources.h",
+        "src/RHI/Profiling/GpuProfiler.h",
+        "src/vulkan/vulkan.h"
+      ],
+      "internalHeaders": [
+        "src/RHI/D3D11/**/*.h",
+        "src/RHI/D3D12/**/*.h",
+        "src/RHI/Vulkan/**/*.h"
+      ],
+      "directDependencies": ["PrismCore", "PrismPlatform"],
+      "platformDependencies": {
+        "windows-d3d12": ["d3d12", "dxgi", "dxguid", "dxcompiler"],
+        "vulkan": ["Vulkan-Headers"]
+      },
+      "forbiddenDependencies": ["PrismEditor", "PrismApplication"]
+    },
+    {
+      "target": "PrismEngine",
+      "sourceRules": ["src/Engine/**/*.cpp"],
+      "publicHeaders": ["src/Engine/**/*.h"],
+      "directDependencies": ["PrismCore"],
+      "thirdPartyDependencies": ["nlohmann_json"]
+    },
+    {
+      "target": "PrismAsset",
+      "sourceRules": ["src/Asset/**/*.cpp"],
+      "publicHeaders": ["src/Asset/**/*.h"],
+      "directDependencies": ["PrismCore", "PrismRHI"],
+      "thirdPartyDependencies": [
+        "PrismSlang",
+        "nlohmann_json",
+        "tinygltf"
+      ],
+      "notes": "Runtime assets and shader compilation remain together for P5; this avoids a second architecture rewrite."
+    },
+    {
+      "target": "PrismScene",
+      "sourceRules": ["src/Scene/**/*.cpp"],
+      "publicHeaders": ["src/Scene/**/*.h"],
+      "directDependencies": [
+        "PrismCore",
+        "PrismPlatform",
+        "PrismEngine",
+        "PrismAsset",
+        "PrismRHI"
+      ],
+      "notes": "GPU-backed scene factories are an accepted temporary direct RHI/Asset dependency."
+    },
+    {
+      "target": "PrismRenderer",
+      "sourceRules": ["src/Renderer/**/*.cpp"],
+      "publicHeaders": [
+        "src/Renderer/RenderFeatureRegistry.h",
+        "src/Renderer/RenderFrameCoordinator.h",
+        "src/Renderer/RenderGraph.h",
+        "src/Renderer/DemoSceneSettings.h",
+        "src/Renderer/FrameDiagnostics.h",
+        "src/Renderer/GpuTimingReport.h",
+        "src/Renderer/PerformanceIdentity.h",
+        "src/Renderer/RenderCapture.h",
+        "src/Renderer/RenderGraphDiagnostics.h",
+        "src/Renderer/RenderHistorySettingsTracker.h",
+        "src/Renderer/RenderSettings.h",
+        "src/Renderer/RendererStatistics.h",
+        "src/Renderer/SceneRenderer.h",
+        "src/Renderer/SceneRendererSharedResources.h",
+        "src/Renderer/Features/Fluid/FluidSettings.h",
+        "src/Renderer/Features/Fluid/FluidStatistics.h",
+        "src/Renderer/Features/Ocean/OceanSettings.h",
+        "src/Renderer/Features/Ocean/OceanSpectrumMath.h",
+        "src/Renderer/Features/Ocean/OceanStatistics.h",
+        "src/Renderer/Features/Ocean/WaterBenchmarkReport.h",
+        "src/Renderer/Features/RenderFeature.h",
+        "src/Renderer/Features/RenderFeatureContext.h"
+      ],
+      "internalHeaders": [
+        "src/Renderer/Graph/**/*.h",
+        "src/Renderer/Pipeline/**/*.h",
+        "src/Renderer/Features/**/*.h",
+        "src/Renderer/*.h"
+      ],
+      "directDependencies": [
+        "PrismCore",
+        "PrismRHI",
+        "PrismAsset",
+        "PrismScene"
+      ],
+      "forbiddenDependencies": ["PrismApplication", "PrismEditor"]
+    },
+    {
+      "target": "PrismEditor",
+      "sourceRules": [
+        "src/UI/**/*.cpp",
+        "src/Platform/FileDialog.cpp"
+      ],
+      "publicHeaders": [
+        "src/UI/EditorCoordinator.h",
+        "src/UI/EditorLayer.h",
+        "src/UI/ImGuiFactory.h",
+        "src/UI/ImGuiSystem.h",
+        "src/UI/UiDrawPacket.h"
+      ],
+      "internalHeaders": [
+        "src/UI/**/*.h",
+        "src/Platform/FileDialog.h"
+      ],
+      "directDependencies": [
+        "PrismCore",
+        "PrismPlatform",
+        "PrismEngine",
+        "PrismAsset",
+        "PrismScene",
+        "PrismRHI",
+        "PrismRenderer"
+      ],
+      "thirdPartyDependencies": ["imgui", "imguizmo"],
+      "notes": "ImGui API backends live under UI/Backends and are compiled only by PrismEditor; FileDialog remains an explicit Editor-owned Platform path exception."
+    },
+    {
+      "target": "PrismApplication",
+      "sourceRules": [
+        "src/Core/Application/**/*.cpp",
+        "src/Core/ApplicationCommandLine.cpp",
+        "src/Core/ApplicationLauncher.cpp",
+        "src/Core/ApplicationHost.cpp",
+        "src/Core/ApplicationHostScene.cpp",
+        "src/Core/Profiling/**/*.cpp",
+        "src/Core/ProcessDiagnostics.cpp",
+        "src/Core/ProcessDiagnosticsPosix.cpp"
+      ],
+      "publicHeaders": [
+        "src/Core/ApplicationLauncher.h",
+        "src/Core/ProcessDiagnostics.h"
+      ],
+      "internalHeaders": [
+        "src/Core/Application/**/*.h",
+        "src/Core/ApplicationCommandLine.h",
+        "src/Core/ApplicationHost.h",
+        "src/Core/Profiling/**/*.h",
+        "src/Core/ProcessDiagnostics.h"
+      ],
+      "directDependencies": [
+        "PrismCore",
+        "PrismPlatform",
+        "PrismEngine",
+        "PrismAsset",
+        "PrismScene",
+        "PrismRHI",
+        "PrismRenderer"
+      ],
+      "conditionalDependencies": {
+        "PRISM_RENDER_BUILD_EDITOR": ["PrismEditor"],
+        "WIN32": ["PrismDiagnostics"]
+      },
+      "thirdPartyDependencies": ["glfw"],
+      "notes": "ProcessDiagnostics selects exactly one Windows/POSIX implementation. Application policy remains under Core paths but is not owned by PrismCore."
+    },
+    {
+      "target": "PrismRender",
+      "sourceRules": ["src/main.cpp"],
+      "publicHeaders": [],
+      "directDependencies": ["PrismApplication", "PrismCore"],
+      "conditionalDependencies": {
+        "WIN32": ["PrismDiagnostics"]
+      }
+    },
+    {
+      "target": "PrismDiagnostics",
+      "sourceRules": [
+        "src/Core/BuildSymbolIdentity.cpp",
+        "src/Core/MinidumpSymbolizer.cpp"
+      ],
+      "publicHeaders": [
+        "src/Core/BuildSymbolIdentity.h",
+        "src/Core/MinidumpSymbolizer.h"
+      ],
+      "directDependencies": ["PrismCore"],
+      "platforms": ["windows"]
+    },
+    {
+      "target": "PrismAutomation",
+      "sourceRules": ["src/Automation/**/*.cpp"],
+      "publicHeaders": ["src/Automation/**/*.h"],
+      "directDependencies": [
+        "PrismCore",
+        "PrismEngine",
+        "PrismAsset",
+        "PrismRHI",
+        "PrismTools"
+      ],
+      "conditionalDependencies": {
+        "WIN32": ["PrismDiagnostics"]
+      },
+      "notes": "P5 may keep Harness and MCP as separate executable targets while sharing this ownership family."
+    },
+    {
+      "target": "PrismTools",
+      "sourceRules": ["src/Tools/**/*.cpp"],
+      "publicHeaders": ["src/Tools/**/*.h"],
+      "directDependencies": [],
+      "notes": "Individual tool executables select only their required sources and dependencies."
+    }
+  ],
+  "explicitPathOwnership": {
+    "src/Platform/FileDialog.cpp": "PrismEditor",
+    "src/Platform/FileDialog.h": "PrismEditor",
+    "src/Core/BuildSymbolIdentity.cpp": "PrismDiagnostics",
+    "src/Core/BuildSymbolIdentity.h": "PrismDiagnostics",
+    "src/Core/MinidumpSymbolizer.cpp": "PrismDiagnostics",
+    "src/Core/MinidumpSymbolizer.h": "PrismDiagnostics",
+    "src/Core/ProcessDiagnostics.cpp": "PrismApplication",
+    "src/Core/ProcessDiagnosticsPosix.cpp": "PrismApplication",
+    "src/Core/ProcessDiagnostics.h": "PrismApplication",
+    "src/Core/Profiling/FrameProfiler.cpp": "PrismCore",
+    "src/Core/Profiling/FrameProfiler.h": "PrismCore",
+    "src/Core/Profiling/FrameProfilerSnapshot.h": "PrismCore",
+    "src/Core/Profiling/SceneViewRefreshController.cpp": "PrismCore",
+    "src/Core/Profiling/SceneViewRefreshController.h": "PrismCore"
+  },
+  "executableEntryPoints": {
+    "src/Automation/HarnessMain.cpp": "PrismHarness",
+    "src/Automation/McpMain.cpp": "PrismMcpServer",
+    "src/Tools/FrameDiagnosticsMain.cpp": "PrismFrameDiagnosticsCompare",
+    "src/Tools/GoldenImageMain.cpp": "PrismGoldenImageCompare",
+    "src/Tools/ImageVisibilityMain.cpp": "PrismImageVisibilityCheck",
+    "src/Tools/MinidumpSymbolizeMain.cpp": "PrismMinidumpSymbolize"
+  },
+  "allowedTestRecompilation": [
+    {
+      "targets": ["PrismRhiTranslationTests"],
+      "sourceRules": ["src/RHI/**/*.cpp", "src/Renderer/Pipeline/PipelineCache.cpp"],
+      "reason": "Isolated API translation fixture without a native backend runtime."
+    },
+    {
+      "targets": ["PrismVulkanRuntimeTests"],
+      "sourceRules": ["src/RHI/Vulkan/VulkanLoader.cpp"],
+      "reason": "The loader fixture controls Vulkan symbol discovery without constructing PrismRHI."
+    },
+    {
+      "targets": ["PrismShaderCompilerTests"],
+      "sourceRules": ["src/Asset/Shader*.cpp", "src/Asset/SlangShaderCompiler.cpp", "src/Core/CpuTrace.cpp", "src/Core/Environment.cpp", "src/RHI/Shader*.cpp"],
+      "reason": "Compiler fixture controls Slang and shader-layout inputs directly."
+    },
+    {
+      "targets": ["PrismRenderGraphTests"],
+      "sourceRules": ["src/Core/CpuTrace.cpp", "src/Core/Environment.cpp", "src/RHI/*.cpp", "src/Renderer/RenderGraph*.cpp", "src/Renderer/QueueSchedulingCostModel.cpp", "src/Renderer/SharedRenderGraphFrontend.cpp", "src/Renderer/RhiPasses.cpp"],
+      "reason": "Mock-RHI graph fixture intentionally links a narrow implementation slice."
+    },
+    {
+      "targets": ["PrismFrameDiagnosticsTests", "PrismFramePerformanceTests", "PrismFrameProfilerTests", "PrismSceneViewRefreshPolicyTests", "PrismApplicationCompositionTests", "PrismAssetRuntimeCoordinatorTests", "PrismApplicationCommandLineTests"],
+      "sourceRules": ["src/Core/Application/**/*.cpp", "src/Core/ApplicationCommandLine.cpp", "src/Core/Profiling/**/*.cpp", "src/RHI/FramePacing.cpp", "src/Renderer/FrameDiagnostics.cpp", "src/Tools/FrameDiagnosticsComparison.cpp"],
+      "reason": "Small application-policy units are recompiled with deterministic fakes."
+    },
+    {
+      "targets": ["PrismEditorCoordinatorTests", "PrismPerformanceProfilerPanelModelTests"],
+      "sourceRules": ["src/UI/**/*.cpp", "src/Core/Profiling/**/*.cpp", "src/Core/ProcessDiagnostics*.cpp"],
+      "reason": "Editor model/coordinator fixtures avoid constructing the complete application."
+    },
+    {
+      "targets": ["PrismOceanSettingsTests", "PrismWaterOpticsTests"],
+      "sourceRules": ["src/Renderer/Features/Ocean/**/*.cpp", "src/Renderer/Pipeline/ScenePipelinePlan.cpp"],
+      "reason": "CPU-only numerical and configuration fixtures intentionally exclude GPU owners."
+    },
+    {
+      "targets": ["PrismSkyAtmosphereGpuTests", "PrismGpuDrivenVisibilityGpuTests", "PrismRenderFrameCoordinatorTests", "PrismCrashFixture"],
+      "sourceRules": ["src/Core/ProcessDiagnostics*.cpp", "src/Core/CpuTrace.cpp", "src/Core/Environment.cpp"],
+      "reason": "Standalone fixture executables require the platform diagnostics implementation."
+    }
+  ],
+  "allowedInternalHeaderIncludes": [
+    {
+      "consumer": "PrismEditor",
+      "provider": "PrismRHI",
+      "sourceRules": ["src/UI/Backends/**/*.cpp", "src/UI/Backends/**/*.h"],
+      "headerRules": ["src/RHI/D3D12/**/*.h", "src/RHI/Vulkan/**/*.h"],
+      "reason": "Editor-owned API adapters need the selected native backend implementation without making RHI depend on UI."
+    }
+  ],
+  "forbiddenDirectEdges": [
+    ["PrismRHI", "PrismEditor"],
+    ["PrismRHI", "PrismApplication"],
+    ["PrismRenderer", "PrismEditor"],
+    ["PrismRenderer", "PrismApplication"],
+    ["PrismScene", "PrismEditor"],
+    ["PrismCore", "PrismRenderer"],
+    ["PrismCore", "PrismApplication"]
+  ],
+  "migrationNotes": [
+    "PrismRenderer, Automation and Tools source lists now contain only their owned production sources; cross-module use is expressed with target edges.",
+    "PUBLIC propagation is not a substitute for a missing direct dependency; the 6.8 checker evaluates direct edges.",
+    "Public/internal header classification is architectural visibility, independent of the temporary project-wide src include root."
+  ]
+}

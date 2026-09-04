@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "policy": "Demo defaults; deterministic 1/60 simulation time; game view; no quality overrides. Temporal sample endpoints do not replace lifecycle control sequences.",
+  "cases": [
+    { "scene": "preview", "frames": [30] },
+    { "scene": "showcase", "frames": [30, 60, 90] },
+    { "scene": "reflections", "frames": [30, 60, 90] },
+    { "scene": "shadows", "frames": [30, 60, 90] },
+    { "scene": "lights", "frames": [30] },
+    { "scene": "gpu-driven", "frames": [30, 60, 90] },
+    { "scene": "post-process", "frames": [30, 60, 90] },
+    { "scene": "render-graph", "frames": [30] },
+    { "scene": "materials", "frames": [30] },
+    { "scene": "streaming", "frames": [30, 60, 90] },
+    { "scene": "atmosphere", "frames": [30] },
+    { "scene": "large-world", "frames": [30] },
+    { "scene": "terrain-vt", "frames": [30, 60, 90] },
+    { "scene": "ocean", "frames": [30, 60, 90] },
+    { "scene": "waveworks-ocean", "frames": [30, 60, 90] },
+    { "scene": "hpwater-ocean", "frames": [30, 60, 90] },
+    { "scene": "pbf", "frames": [30, 60, 90] },
+    { "scene": "fluid-render", "frames": [30, 60, 90] },
+    { "scene": "fluid-caustics", "frames": [30, 60, 90] },
+    { "scene": "fluid-toon", "frames": [30, 60, 90] }
+  ]
+}

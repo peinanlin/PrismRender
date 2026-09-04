@@ -1,0 +1,5 @@
+{"requestId":"stage17h-reimport","command":"asset.reimport","arguments":{"path":"assets/scenes/StartupScene.gltf"}}
+{"requestId":"stage17h-cache-status","command":"asset.cache.status","arguments":{}}
+{"requestId":"stage17h-gc-preview","command":"asset.cache.gc","arguments":{"dryRun":true,"minimumUnusedAgeSeconds":604800,"maximumBytes":21474836480}}
+{"requestId":"stage17h-gc-apply","command":"asset.cache.gc","arguments":{"dryRun":false,"minimumUnusedAgeSeconds":604800,"maximumBytes":21474836480}}
+{"requestId":"stage17h-cache-status-after","command":"asset.cache.status","arguments":{}}

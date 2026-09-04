@@ -1,0 +1,1 @@
+{"requestId":"asset-streaming-plan","command":"asset.streaming.plan","arguments":{"assetId":"634f6359-9c7d-5dc9-9e07-0046822e77d3","priority":100,"pin":false,"residentBudgetBytes":536870912,"timeoutMilliseconds":5000}}

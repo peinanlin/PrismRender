@@ -1,0 +1,27 @@
+set(PRISM_CORE_SOURCES
+    src/Core/CpuTrace.cpp
+    src/Core/DiagnosticLog.cpp
+    src/Core/Environment.cpp
+    src/Core/FrameTimer.cpp
+    src/Core/Profiling/FrameProfiler.cpp
+    src/Core/Profiling/SceneViewRefreshController.cpp
+    src/Core/Threading/TaskExecutorFactory.cpp
+    src/Core/Threading/TaskGroup.cpp
+    src/Core/Threading/TaskScheduler.cpp
+)
+
+set(PRISM_CORE_HEADERS
+    src/Core/Assert.h
+    src/Core/CpuTrace.h
+    src/Core/DiagnosticLog.h
+    src/Core/Environment.h
+    src/Core/FrameTimer.h
+    src/Core/Math/Double3.h
+    src/Core/Profiling/FrameProfiler.h
+    src/Core/Profiling/FrameProfilerSnapshot.h
+    src/Core/Profiling/SceneViewRefreshController.h
+    src/Core/Threading/ITaskExecutor.h
+    src/Core/Threading/TaskExecutorFactory.h
+    src/Core/Threading/TaskGroup.h
+    src/Core/Threading/TaskScheduler.h
+)

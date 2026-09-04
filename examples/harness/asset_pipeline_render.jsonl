@@ -1,0 +1,13 @@
+{"requestId":"asset-example-list","command":"asset.list","arguments":{"query":"StartupScene"}}
+{"requestId":"asset-example-describe-material","command":"asset.describe","arguments":{"assetPath":"prism-asset://b35afd20-07c1-5015-b144-7131722c4837"}}
+{"requestId":"asset-world-camera-create","command":"entity.create","arguments":{"id":"30000000-0000-4000-8000-000000000001","name":"AssetCamera"}}
+{"requestId":"asset-world-camera-add","command":"component.add","arguments":{"entity":"30000000-0000-4000-8000-000000000001","component":"Camera","properties":{"fieldOfViewY":0.785398163,"nearPlane":0.1,"farPlane":250.0}}}
+{"requestId":"asset-world-camera-transform","command":"component.set","arguments":{"entity":"30000000-0000-4000-8000-000000000001","component":"Transform","properties":{"position":[4.0,3.0,-8.0],"rotation":[-0.18,-0.46,0.0]}}}
+{"requestId":"asset-world-sun-create","command":"entity.create","arguments":{"id":"30000000-0000-4000-8000-000000000002","name":"AssetSun"}}
+{"requestId":"asset-world-sun-add","command":"component.add","arguments":{"entity":"30000000-0000-4000-8000-000000000002","component":"DirectionalLight","properties":{"direction":[-0.3,-0.12,-0.95],"color":[1.0,0.94,0.84],"intensity":1.35}}}
+{"requestId":"asset-world-duck-create","command":"entity.create","arguments":{"id":"30000000-0000-4000-8000-000000000003","name":"ImportedDuck"}}
+{"requestId":"asset-world-duck-transform","command":"component.set","arguments":{"entity":"30000000-0000-4000-8000-000000000003","component":"Transform","properties":{"position":[0.0,0.0,0.0],"rotation":[0.0,0.4,0.0],"scale":[0.01,0.01,0.01]}}}
+{"requestId":"asset-world-duck-renderer","command":"component.add","arguments":{"entity":"30000000-0000-4000-8000-000000000003","component":"MeshRenderer","properties":{"meshAsset":"prism-asset://22c5bd25-640e-5120-8ba8-7b6caad9f90a","materialAsset":"prism-asset://b35afd20-07c1-5015-b144-7131722c4837","visible":true}}}
+{"requestId":"asset-world-configure","command":"simulation.configure","arguments":{"fixedDeltaSeconds":0.016666666666666666,"randomSeed":77}}
+{"requestId":"asset-world-step","command":"simulation.step","arguments":{"count":30}}
+{"requestId":"asset-world-compare","command":"render.compare_apis","arguments":{"stage":"tonemap","width":800,"height":450,"d3d12Output":"automation/captures/imported-duck-d3d12.bmp","vulkanOutput":"automation/captures/imported-duck-vulkan.bmp","enforce":true,"meanThreshold":0.001,"rmseThreshold":0.005,"changedThreshold":0.01}}

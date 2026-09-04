@@ -1,0 +1,160 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "windows-ci",
+      "displayName": "Windows CI",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build-windows-ci",
+      "cacheVariables": {
+        "PRISM_RENDER_ENABLE_D3D12": "ON",
+        "PRISM_RENDER_BUILD_EDITOR": "ON",
+        "PRISM_RENDER_BUILD_HARNESS": "ON",
+        "PRISM_RENDER_CHECK_MODULE_BOUNDARIES": "ON",
+        "PRISM_RENDER_CHECK_PUBLIC_HEADERS": "ON",
+        "PRISM_RENDER_FETCH_DEPS": "ON",
+        "BUILD_TESTING": "ON"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-vulkan-only-ci",
+      "displayName": "Windows Vulkan-only CI",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build-windows-vulkan-ci",
+      "cacheVariables": {
+        "PRISM_RENDER_ENABLE_D3D12": "OFF",
+        "PRISM_RENDER_BUILD_EDITOR": "OFF",
+        "PRISM_RENDER_BUILD_HARNESS": "OFF",
+        "PRISM_RENDER_CHECK_MODULE_BOUNDARIES": "ON",
+        "PRISM_RENDER_CHECK_PUBLIC_HEADERS": "ON",
+        "PRISM_RENDER_FETCH_DEPS": "ON",
+        "BUILD_TESTING": "ON"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-d3d12-standalone-ci",
+      "displayName": "Windows D3D12 Standalone CI",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build-windows-d3d12-standalone-ci",
+      "cacheVariables": {
+        "PRISM_RENDER_ENABLE_D3D12": "ON",
+        "PRISM_RENDER_BUILD_EDITOR": "OFF",
+        "PRISM_RENDER_BUILD_HARNESS": "OFF",
+        "PRISM_RENDER_CHECK_MODULE_BOUNDARIES": "ON",
+        "PRISM_RENDER_CHECK_PUBLIC_HEADERS": "ON",
+        "PRISM_RENDER_FETCH_DEPS": "ON",
+        "BUILD_TESTING": "ON"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "linux-vulkan-debug",
+      "displayName": "Linux Vulkan Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-linux-vulkan",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "PRISM_SLANG_ROOT": "$env{PRISM_SLANG_ROOT}",
+        "PRISM_RENDER_ENABLE_D3D12": "OFF",
+        "PRISM_RENDER_BUILD_EDITOR": "OFF",
+        "PRISM_RENDER_BUILD_HARNESS": "OFF",
+        "PRISM_RENDER_CHECK_MODULE_BOUNDARIES": "ON",
+        "PRISM_RENDER_CHECK_PUBLIC_HEADERS": "ON",
+        "PRISM_RENDER_FETCH_DEPS": "ON",
+        "BUILD_TESTING": "ON"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-ci",
+      "configurePreset": "windows-ci",
+      "configuration": "RelWithDebInfo",
+      "jobs": 4
+    },
+    {
+      "name": "windows-vulkan-only-ci",
+      "configurePreset": "windows-vulkan-only-ci",
+      "configuration": "RelWithDebInfo",
+      "jobs": 4
+    },
+    {
+      "name": "windows-d3d12-standalone-ci",
+      "configurePreset": "windows-d3d12-standalone-ci",
+      "configuration": "RelWithDebInfo",
+      "jobs": 4
+    },
+    {
+      "name": "linux-vulkan-debug",
+      "configurePreset": "linux-vulkan-debug",
+      "jobs": 2
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "windows-ci",
+      "configurePreset": "windows-ci",
+      "configuration": "RelWithDebInfo",
+      "filter": {
+        "exclude": {
+          "label": "gpu"
+        }
+      },
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "windows-vulkan-only-ci",
+      "configurePreset": "windows-vulkan-only-ci",
+      "configuration": "RelWithDebInfo",
+      "filter": {
+        "exclude": {
+          "label": "gpu"
+        }
+      },
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "windows-d3d12-standalone-ci",
+      "configurePreset": "windows-d3d12-standalone-ci",
+      "configuration": "RelWithDebInfo",
+      "filter": {
+        "exclude": {
+          "label": "gpu"
+        }
+      },
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "linux-vulkan-debug",
+      "configurePreset": "linux-vulkan-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}
