@@ -1,6 +1,6 @@
 # PrismRender WaveWorks-like 实时海洋
 
-[返回项目主页](../README.md)
+[返回项目主页](README.md)
 
 PrismRender 包含一套自研的大范围实时海洋渲染方案。该方案参考 NVIDIA WaveWorks 的公开技术思路与示例表现，但不依赖或分发 WaveWorks SDK、运行库及专有 Shader。
 
@@ -9,7 +9,7 @@ PrismRender 包含一套自研的大范围实时海洋渲染方案。该方案�
 <!-- GIF 槽位：当前文件是由实机截图生成的单帧占位 GIF。录制完成后直接用同名文件覆盖。 -->
 
 <p align="center">
-  <img src="media/ocean/ocean-overview.gif" width="900" alt="PrismRender WaveWorks-like real-time ocean"/>
+  <img src="Img/WaveWorksLikeOcean/ocean-overview.gif" width="900" alt="PrismRender WaveWorks-like real-time ocean"/>
 </p>
 
 <p align="center"><sub>Four-cascade spectral ocean · persistent foam · adaptive quadtree geometry · atmospheric reflection</sub></p>
@@ -112,7 +112,7 @@ R 通道泡沫能量，GBA 写为 0。
 图中橙色表示 Base Wind 模长，青色表示 Swell 模长。
 
 <p align="center">
-  <img src="media/ocean/pipeline/01-initial-double-jonswap.png" width="820" alt="Four-cascade double JONSWAP initial spectrum texture"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/01-initial-double-jonswap.png" width="820" alt="Four-cascade double JONSWAP initial spectrum texture"/>
 </p>
 
 #### 2. 当前时刻的高度与水平位移频谱
@@ -122,7 +122,7 @@ EID 166 根据深水色散关系 `ω(k)=sqrt(g|k|)` 推进复数相位，先得�
 `|Dx| / |Height| / |Dz|`。这里仍是频域数据，不是可直接加到顶点上的米制位移。
 
 <p align="center">
-  <img src="media/ocean/pipeline/02-spectrum-evolution.png" width="820" alt="Four-cascade evolved ocean spectrum texture"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/02-spectrum-evolution.png" width="820" alt="Four-cascade evolved ocean spectrum texture"/>
 </p>
 
 #### 3. 横向 IFFT
@@ -132,7 +132,7 @@ Radix-2 蝶形阶段。输出的 `A1/B1` 保持同样的 RGBA 语义，但此时
 X 已是空间坐标，Z 仍是频率坐标，所以图案呈现明显的单方向结构。
 
 <p align="center">
-  <img src="media/ocean/pipeline/03-horizontal-ifft.png" width="820" alt="Four-cascade horizontal inverse FFT intermediate textures"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/03-horizontal-ifft.png" width="820" alt="Four-cascade horizontal inverse FFT intermediate textures"/>
 </p>
 
 #### 4. 纵向 IFFT
@@ -143,7 +143,7 @@ EID 197 对列执行同样的过程，得到完整二维空间场。随后应用
 `Dx / Height / Dz`。
 
 <p align="center">
-  <img src="media/ocean/pipeline/04-vertical-ifft.png" width="820" alt="Four-cascade vertical inverse FFT spatial fields"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/04-vertical-ifft.png" width="820" alt="Four-cascade vertical inverse FFT spatial fields"/>
 </p>
 
 #### 5. 位移与水平压缩
@@ -153,11 +153,11 @@ EID 214 将 IFFT 空间场转换为半精度渲染 Map。`Displacement.rgb`
 `Displacement.a` 是水平变形矩阵的 Jacobian，用于判断局部面积压缩或翻折。
 
 <p align="center">
-  <img src="media/ocean/pipeline/05-displacement.png" width="820" alt="Four-cascade ocean displacement textures"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/05-displacement.png" width="820" alt="Four-cascade ocean displacement textures"/>
 </p>
 
 <p align="center">
-  <img src="media/ocean/pipeline/06-jacobian.png" width="820" alt="Four-cascade ocean Jacobian textures"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/06-jacobian.png" width="820" alt="Four-cascade ocean Jacobian textures"/>
 </p>
 
 #### 6. 法线、Folding 与坡度矩
@@ -167,15 +167,15 @@ Compute Shader 对空间位移做周期中心差分，构造切线并叉乘得�
 用于法线，二阶矩用于估计像素内未解析细浪的坡度方差。
 
 <p align="center">
-  <img src="media/ocean/pipeline/07-gradient-normal.png" width="820" alt="Four-cascade ocean normal textures"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/07-gradient-normal.png" width="820" alt="Four-cascade ocean normal textures"/>
 </p>
 
 <p align="center">
-  <img src="media/ocean/pipeline/08-folding.png" width="820" alt="Four-cascade folding and breaking textures"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/08-folding.png" width="820" alt="Four-cascade folding and breaking textures"/>
 </p>
 
 <p align="center">
-  <img src="media/ocean/pipeline/09-slope-moments.png" width="820" alt="Four-cascade ocean slope moment textures"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/09-slope-moments.png" width="820" alt="Four-cascade ocean slope moment textures"/>
 </p>
 
 #### 7. 持久泡沫历史
@@ -188,7 +188,7 @@ GBA 保存本帧 `Dx/Dz/Height`，供下一帧估计表面运动。
 是当前风浪/破碎阈值的真实结果，不是导出失败。
 
 <p align="center">
-  <img src="media/ocean/pipeline/10-persistent-foam.png" width="820" alt="Four-cascade persistent foam history textures"/>
+  <img src="Img/WaveWorksLikeOcean/pipeline/10-persistent-foam.png" width="820" alt="Four-cascade persistent foam history textures"/>
 </p>
 
 #### 8. 这些纹理怎样变成最终大海
@@ -217,12 +217,12 @@ Patch 组合成视觉上连续的大范围海面。
 
 对应实现可查看：
 
-- [`OceanInitialSpectrum.slang`](../assets/shaders/Ocean/OceanInitialSpectrum.slang)：双 JONSWAP、频带分配和 `H0(k)`。
-- [`OceanSpectrumEvolution.slang`](../assets/shaders/Ocean/OceanSpectrumEvolution.slang)：相位演化及 `Height/Dx/Dz` 复数打包。
-- [`OceanFft.slang`](../assets/shaders/Ocean/OceanFft.slang)：横向/纵向共享内存 IFFT。
-- [`OceanBuildMaps.slang`](../assets/shaders/Ocean/OceanBuildMaps.slang)：位移、法线、Jacobian、Folding 和 Moments。
-- [`OceanFoam.slang`](../assets/shaders/Ocean/OceanFoam.slang)：泡沫平流、生成、耗散和 History 写回。
-- [`OceanSurface.hlsl`](../assets/shaders/OceanSurface.hlsl)：四级联采样、顶点位移与最终水面材质。
+- [`OceanInitialSpectrum.slang`](assets/shaders/Ocean/OceanInitialSpectrum.slang)：双 JONSWAP、频带分配和 `H0(k)`。
+- [`OceanSpectrumEvolution.slang`](assets/shaders/Ocean/OceanSpectrumEvolution.slang)：相位演化及 `Height/Dx/Dz` 复数打包。
+- [`OceanFft.slang`](assets/shaders/Ocean/OceanFft.slang)：横向/纵向共享内存 IFFT。
+- [`OceanBuildMaps.slang`](assets/shaders/Ocean/OceanBuildMaps.slang)：位移、法线、Jacobian、Folding 和 Moments。
+- [`OceanFoam.slang`](assets/shaders/Ocean/OceanFoam.slang)：泡沫平流、生成、耗散和 History 写回。
+- [`OceanSurface.hlsl`](assets/shaders/OceanSurface.hlsl)：四级联采样、顶点位移与最终水面材质。
 
 > **面试可回答版本：** 我把海浪数据组织成四层 512×512 的纹理数组，
 > 四层不是四块海域，而是 15.625～1000 米四个世界周期的波长频带。
@@ -276,23 +276,23 @@ OceanFoamHistory  = Persistent Foam Energy
 - C3：1000 m 周期，提供大尺度涌浪、低频高度变化和远景轮廓。
 
 <p align="center">
-  <img src="media/ocean/cascade-isolated-comparison.png" width="900" alt="C0 C1 C2 C3 isolated ocean cascade comparison"/>
+  <img src="Img/WaveWorksLikeOcean/cascade-isolated-comparison.png" width="900" alt="C0 C1 C2 C3 isolated ocean cascade comparison"/>
 </p>
 
 第二组按渲染时的叠加顺序逐步加入频带。它能直观看出：同一个海面顶点会依次采样这些级联的位移、坡度、折叠和坡度矩，然后把有效频带的结果叠加，而不是把顶点分配给某一个级联。
 
 <p align="center">
-  <img src="media/ocean/cascade-comparison.png" width="900" alt="Cumulative four-cascade ocean comparison"/>
+  <img src="Img/WaveWorksLikeOcean/cascade-comparison.png" width="900" alt="Cumulative four-cascade ocean comparison"/>
 </p>
 
 <p align="center">
-  <a href="media/ocean/cascade-c0-only.png">C0</a> ·
-  <a href="media/ocean/cascade-c1-only.png">C1</a> ·
-  <a href="media/ocean/cascade-c2-only.png">C2</a> ·
-  <a href="media/ocean/cascade-c3-only.png">C3</a> ·
-  <a href="media/ocean/cascade-c0-c1.png">C0+C1</a> ·
-  <a href="media/ocean/cascade-c0-c2.png">C0+C1+C2</a> ·
-  <a href="media/ocean/cascade-all.png">全部级联</a>
+  <a href="Img/WaveWorksLikeOcean/cascade-c0-only.png">C0</a> ·
+  <a href="Img/WaveWorksLikeOcean/cascade-c1-only.png">C1</a> ·
+  <a href="Img/WaveWorksLikeOcean/cascade-c2-only.png">C2</a> ·
+  <a href="Img/WaveWorksLikeOcean/cascade-c3-only.png">C3</a> ·
+  <a href="Img/WaveWorksLikeOcean/cascade-c0-c1.png">C0+C1</a> ·
+  <a href="Img/WaveWorksLikeOcean/cascade-c0-c2.png">C0+C1+C2</a> ·
+  <a href="Img/WaveWorksLikeOcean/cascade-all.png">全部级联</a>
 </p>
 
 可使用确定性截图脚本复现这些结果；`-CascadeMask` 支持 `c0`、`c1`、`c2`、`c3`、`c01`、`c012` 和 `all`：
@@ -310,7 +310,7 @@ OceanFoamHistory  = Persistent Foam Energy
     -OutputName cascade-c0-only
 ```
 
-项目内置的彩色覆盖调试图仍保留为 [`cascade-debug.png`](media/ocean/cascade-debug.png)，它主要用于检查距离淡出与级联过渡，不用于比较单个频带的波形。
+项目内置的彩色覆盖调试图仍保留为 [`cascade-debug.png`](Img/WaveWorksLikeOcean/cascade-debug.png)，它主要用于检查距离淡出与级联过渡，不用于比较单个频带的波形。
 
 ## 自适应海面几何
 
@@ -339,7 +339,7 @@ Dtotal = Σ DistanceWeightc × Displacementc(WorldXZ)
 下图由同一相机位置的 Geometry LOD 与 Wireframe Game View 自动抓取并合成。左侧颜色区分空间 LOD，右侧线框展示共享基础网格映射到不同世界尺寸后的几何密度。
 
 <p align="center">
-  <img src="media/ocean/quadtree-lod.png" width="900" alt="Adaptive ocean quadtree LOD"/>
+  <img src="Img/WaveWorksLikeOcean/quadtree-lod.png" width="900" alt="Adaptive ocean quadtree LOD"/>
 </p>
 
 ## 风浪白沫与局部交互
@@ -359,15 +359,15 @@ F(t+1) = Advect(F(t), velocity) + BreakingSource - Dissipation
 下面的静态图使用高风浪白帽验证预设，展示由频谱折叠信号产生的非均匀泡沫覆盖。局部船尾流需要用时间序列才能说明平流与衰减，因此不使用单帧冒充动态结果。
 
 <p align="center">
-  <img src="media/ocean/spectral-whitecaps.png" width="900" alt="Spectral whitecaps generated from wave breaking signals"/>
+  <img src="Img/WaveWorksLikeOcean/spectral-whitecaps.png" width="900" alt="Spectral whitecaps generated from wave breaking signals"/>
 </p>
 
 ### GIF 槽位：船尾流与泡沫生命周期
 
-当前是频谱白帽结果生成的单帧占位 GIF。录制后直接覆盖 `media/ocean/foam-and-wake.gif`，建议展示隐形船绕行、尾流生成、泡沫平流、扩散和衰减。
+当前是频谱白帽结果生成的单帧占位 GIF。录制后直接覆盖 `Img/WaveWorksLikeOcean/foam-and-wake.gif`，建议展示隐形船绕行、尾流生成、泡沫平流、扩散和衰减。
 
 <p align="center">
-  <img src="media/ocean/foam-and-wake.gif" width="900" alt="Animated local wake and foam lifecycle placeholder"/>
+  <img src="Img/WaveWorksLikeOcean/foam-and-wake.gif" width="900" alt="Animated local wake and foam lifecycle placeholder"/>
 </p>
 
 ## 实时参数控制
@@ -386,7 +386,7 @@ Ocean Lab 支持运行时修改：
 ### GIF 槽位：实时风浪调参
 
 <p align="center">
-  <img src="media/ocean/realtime-controls.gif" width="900" alt="Real-time wind direction speed and fetch controls placeholder"/>
+  <img src="Img/WaveWorksLikeOcean/realtime-controls.gif" width="900" alt="Real-time wind direction speed and fetch controls placeholder"/>
 </p>
 
 录制时保留 Ocean Lab UI，连续调整风速、风向与 Fetch，并让画面停留足够时间以展示频谱重建后的变化。直接覆盖同名文件即可，不需要再修改 Markdown。
@@ -426,7 +426,7 @@ Folding + Foam History + Local Foam → 分层泡沫
 
 该结果表示固定本地基准条件下的中位吞吐率，不等同于开启 VSync、Editor 双视图、GPU Validation、RenderDoc 捕获或录屏时的显示 FPS。驱动版本、功耗状态、窗口模式、相机覆盖率和后台负载均可能影响结果。
 
-<!-- 素材7（可选）：docs/media/ocean/performance-rtx5060.png；展示稳定采样结果和完整测试条件。 -->
+<!-- 素材7（可选）：Img/WaveWorksLikeOcean/performance-rtx5060.png；展示稳定采样结果和完整测试条件。 -->
 
 ## 构建与运行
 
@@ -446,7 +446,7 @@ cmake --build --preset windows-ci --config Release
 当前已自动生成的静态结果和可直接覆盖的 GIF 槽位：
 
 ```text
-docs/media/ocean/
+Img/WaveWorksLikeOcean/
 ├─ ocean-overview.png          # 已生成：最终海面首图
 ├─ ocean-overview.gif          # 单帧占位：替换为最终效果动图
 ├─ cascade-debug.png           # 已生成：四级联覆盖调试

@@ -13,6 +13,14 @@
 /.git-publish/
 /.git-local-metadata-backup/
 
+# Local stage-development notes; keep only the architecture document linked
+# directly from README.md in the public repository.
+/docs/*
+!/docs/RHI_DUAL_BACKEND_ARCHITECTURE_CN.md
+
+# Local metadata emitted while converting RenderDoc resources to showcase PNGs.
+/Img/WaveWorksLikeOcean/pipeline/metadata.json
+
 # Archived tool bundles and architecture snapshots
 /artifacts/
 

@@ -10,6 +10,7 @@ PrismRender 是一个基于 **C++20、Direct3D 12、Vulkan 与 Slang** 的现代
 - 基于 D3D12 Copy Queue、Vulkan Transfer Queue 和持久映射分页 Upload Ring 实现异步资源上传，通过 Frames-in-Flight、Fence/Timeline 管理复用与延迟销毁。
 - 实现声明式 Render Graph：RAW/WAR/WAW 依赖 DAG、反向 Pass Culling、子资源 Barrier、Transient Alias、Graphics/Compute Queue Batch 与跨队列同步。
 - 使用 Slang Reflection 生成资源绑定布局并编译 DXIL/SPIR-V，实现 Forward+ / Deferred PBR、IBL、CSM、Clustered Lighting、GTAO、SSR、TAA、Bloom 以及 GPU Frustum/Hi-Z Occlusion Culling。
+- 实现双 JONSWAP 四级联 FFT 海洋、持久白沫与四叉树海面 LOD；完整数据流、RenderDoc EID 和中间纹理见 [WaveWorks-like 实时海洋专题](WAVEWORKS_LIKE_OCEAN_CN.md)。
 
 ## 架构总览
 
@@ -313,6 +314,7 @@ Slang Reflection 提取 Constant Buffer、Shader Resource、UAV、Sampler、Bind
 | **Forward+ Lab** | 大量局部光源、Clustered Light List，以及 Forward baseline、Forward+、Deferred 对同一场景的渲染路径 | 展示多光源最终画面；路径输出应保持视觉一致，性能与 Cluster 数据由专项报告验证 |
 | **GPU Driven Stress Lab** | 重复实例、遮挡墙、Indirect Draw、GPU Frustum 和 Hi-Z Occlusion 的压力输入 | 展示稳定 60 帧后的压力场景和遮挡结构；可见数与间接绘制数据保留在诊断报告 |
 | **Postprocess Lab** | HDR 场景颜色、Bloom 提取以及 Tonemapping 后的最终输出 | 使用 Final、HDR、Bloom-only 三阶段对比 |
+| **WaveWorks-like Ocean Lab** | 双 JONSWAP 四级联 FFT、水平位移、破碎白沫、局部尾流与自适应四叉树海面 | 展示最终海面、独立/累加级联对比以及 RenderDoc 中间纹理 |
 | **RenderGraph Lab** | Pass DAG、Pass Culling、Barrier、Transient Alias、Graphics/Compute Queue Batch 与跨队列同步 | 最终画面不能证明图编译和调度；隐藏 Stats 后不放静态截图 |
 | **Asset Streaming Lab** | Requested、Queued、Uploading、Resident、Released/Evicted 的时间过程，以及 Upload Ticket、预算和驻留变化 | 单帧 Game 输出不能证明流送过程；隐藏 Stats 后不放静态截图 |
 
@@ -341,6 +343,14 @@ Slang Reflection 提取 Constant Buffer、Shader Resource、UAV、Sampler、Bind
 | Final Output | HDR Scene Color | Bloom-only |
 |---|---|---|
 | ![Postprocess Final](Img/Labs/postprocess-final.png) | ![Postprocess HDR](Img/Labs/postprocess-hdr.png) | ![Postprocess Bloom](Img/Labs/postprocess-bloom.png) |
+
+### WaveWorks-like Ocean Lab
+
+双 JONSWAP 频谱在四个物理波长级联中演化，通过二维 IFFT 生成高度、水平位移、坡度、Folding 与持久白沫，再由相机相关的四叉树 Patch LOD 构建大范围海面。
+
+[查看完整海洋专题、四级联对比与 RenderDoc 中间纹理](WAVEWORKS_LIKE_OCEAN_CN.md)
+
+![WaveWorks-like Ocean](Img/WaveWorksLikeOcean/ocean-overview.gif)
 
 ## 渲染效果
 
@@ -410,7 +420,8 @@ cmake --build --preset windows-ci
 PrismRender/
 ├─ assets/                  # Shader、模型、纹理与场景资源
 ├─ cmake/                   # 模块边界与构建检查
-├─ docs/                    # 架构、实现和验证文档
+├─ docs/                    # README 直接引用的深入架构文档
+├─ Img/                     # GitHub 展示图片与 GIF
 ├─ src/
 │  ├─ Asset/                # 导入、Streaming 与上传请求
 │  ├─ Automation/           # Capture 与自动化验证
@@ -423,6 +434,7 @@ PrismRender/
 │  ├─ Tools/                # 开发与离线工具
 │  └─ UI/                   # ImGui / Editor
 ├─ tests/                   # 单元、架构与 GPU 验证
+├─ WAVEWORKS_LIKE_OCEAN_CN.md
 ├─ CMakeLists.txt
 └─ CMakePresets.json
 ~~~
