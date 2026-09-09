@@ -2,7 +2,6 @@
 
 PrismRender 是一个基于 **C++20、Direct3D 12、Vulkan 与 Slang** 的现代实时渲染器，聚焦显式图形 API、跨后端 RHI、Render Graph、多线程渲染、异步资源上传与 GPU Driven Rendering。
 
-项目目标不是构建完整游戏引擎，而是以可运行、可分析、可验证的方式实现现代渲染器中的关键架构与渲染技术。
 
 ## 技术概览
 
