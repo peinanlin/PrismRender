@@ -224,14 +224,7 @@ Patch 组合成视觉上连续的大范围海面。
 - [`OceanFoam.slang`](assets/shaders/Ocean/OceanFoam.slang)：泡沫平流、生成、耗散和 History 写回。
 - [`OceanSurface.hlsl`](assets/shaders/OceanSurface.hlsl)：四级联采样、顶点位移与最终水面材质。
 
-> **面试可回答版本：** 我把海浪数据组织成四层 512×512 的纹理数组，
-> 四层不是四块海域，而是 15.625～1000 米四个世界周期的波长频带。
-> 初始纹理用 RG/BA 分别保存 Base Wind 和 Swell 的复数 JONSWAP 系数；
-> 每帧频谱演化后，A 纹理保存高度与 X 位移复数，B 纹理保存 Z 位移复数。
-> 横纵两次 IFFT 将它们变成空间位移，再生成位移、法线/Folding、坡度矩和
-> 持久泡沫 Map。四叉树 Patch 顶点按连续世界坐标采样四个 Slice 并叠加，
-> 像素阶段再用法线、坡度方差和泡沫完成 GGX/Fresnel 水面着色。RenderDoc
-> 中可沿 EID 166、181、197、214、228、350 逐步验证整条数据流。
+
 
 Base Wind 与 Swell 分别描述局部风浪和远距离涌浪。系统根据风速、风向、Fetch、谱峰、短波截止和振幅参数计算 JONSWAP 频谱能量。每个频率格点根据波向量推导物理波长，并通过 `BandWeight` 将重叠波段的能量平滑分配到四个级联：
 
@@ -506,6 +499,3 @@ Img/WaveWorksLikeOcean/
 - 大范围频谱风浪与有限区域局部交互波采用不同求解方式，最后在同一水面合成。
 - WaveWorks 用作技术思路和视觉行为参考；代码、Shader、资源管理和跨 API 接入均由 PrismRender 自行实现。
 
-## 面试可回答版本
-
-这套海洋是参考 WaveWorks 公开技术思路完成的自研实现，不依赖 NVIDIA WaveWorks 运行库。模拟端使用 Base Wind 与 Swell 双 JONSWAP 谱源，将能量分配到四个波长级联，通过 GPU 频谱演化和二维 IFFT 生成高度、水平位移、坡度、折叠与坡度矩；几何端使用相机相关的四叉树 Patch LOD；材质端通过坡度法线、Fresnel、GGX 环境反射和坡度方差过滤表现水面，并根据破碎信号和历史能量生成风浪白沫及局部尾流。RTX 5060、D3D12、1280×800、Release Extreme 固定基准中，Renderer GPU 中位数约 4.62 ms，完整帧循环约 4.90 ms，对应约 204 FPS 理论吞吐率。
