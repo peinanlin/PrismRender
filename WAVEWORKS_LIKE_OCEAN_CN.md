@@ -2,6 +2,8 @@
 
 [返回项目主页](README.md)
 
+下面是实现效果：
+
 ![PrismRender 海面实时演示](Img/WaveWorksLikeOcean/Hybrid/show-web.gif)
 
 这篇文章记录我在 PrismRender 中实现大范围海面的过程。起点是一份 NVIDIA WaveWorks 示例的 RenderDoc 截帧：我先沿着海面 Draw 的资源绑定拆解它的 GPU 数据流，再实现频谱演化、位移、着色和泡沫，再处理大范围几何与资源管理。
