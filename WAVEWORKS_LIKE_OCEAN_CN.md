@@ -2,6 +2,8 @@
 
 [返回项目主页](README.md)
 
+![PrismRender 海面实时演示](Img/WaveWorksLikeOcean/Hybrid/show-web.gif)
+
 这篇文章记录我在 PrismRender 中实现大范围海面的过程。起点是一份 NVIDIA WaveWorks 示例的 RenderDoc 截帧：我先沿着海面 Draw 的资源绑定拆解它的 GPU 数据流，再实现频谱演化、位移、着色和泡沫，再处理大范围几何与资源管理。
 
 下面是目前的效果。风浪使用项目自己的 JONSWAP 初始谱，后续 FFT、表面数据和着色沿用从参考示例恢复的路径。展示参数为 12 m/s 风速、100 km Fetch；环境、局部初始状态以及这组相机的 Patch 来自参考数据。整个过程由项目自己的 C++、D3D12 RHI 和 Shader 执行，不依赖 WaveWorks SDK 运行库。
@@ -9,8 +11,6 @@
 ![PrismRender 当前海面效果](Img/WaveWorksLikeOcean/Hybrid/overview.png)
 
 *图 1：当前项目的完整水面。大尺度起伏、细波高光和局部白沫分别来自不同部分的模拟与着色。*
-
-<!-- 动态效果位置：![海面连续运动](Img/WaveWorksLikeOcean/Hybrid/ocean-motion.gif) -->
 
 ## 先从海面 Draw 入手，弄清楚一帧在做什么
 
