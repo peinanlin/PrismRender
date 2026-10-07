@@ -54,7 +54,7 @@ function Invoke-ArchitectureProcess {
     foreach ($argument in $Arguments) { $info.ArgumentList.Add($argument) }
     # Preserve PATH/SDK/driver environment, but never inherit an unrelated capture or quality override.
     foreach ($key in @($info.Environment.Keys)) {
-        if ($key -like 'PRISM_RENDER_*') { [void]$info.Environment.Remove($key) }
+        if ($key -like 'PRISM_RENDER_*' -or $key -like 'PRISM_RHI_*') { [void]$info.Environment.Remove($key) }
     }
     foreach ($key in $Environment.Keys) { $info.Environment[$key] = [string]$Environment[$key] }
     $process = [Diagnostics.Process]::new()

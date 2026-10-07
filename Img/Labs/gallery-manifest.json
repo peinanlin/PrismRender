@@ -1,0 +1,126 @@
+{
+  "description": "PrismRender internal GPU captures for the README gallery; BMP converted losslessly to RGB PNG.",
+  "frame": 60,
+  "deterministic": true,
+  "captures": [
+    {
+      "file": "editor-workspace.png",
+      "scene": "showcase",
+      "api": "d3d12",
+      "stage": "editor-ui",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "fd82776939e2888a1671ebc52e1af0bbec735812dfa86365cda8b38f6748839d"
+    },
+    {
+      "file": "render-graph-inspector.png",
+      "scene": "render-graph",
+      "api": "d3d12",
+      "stage": "editor-ui",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "e62fbd5fe6b4c14794ca811eb595b6ba2313eb6710b250e381f274ce9b29d77a"
+    },
+    {
+      "file": "material-lab-d3d12.png",
+      "scene": "materials",
+      "api": "d3d12",
+      "stage": "tonemap",
+      "width": 1600,
+      "height": 900,
+      "sha256": "212edc8b66a3160df4b12f9e413daffde9d4e913b7d6c76acfd5088da9732242"
+    },
+    {
+      "file": "material-lab-vulkan.png",
+      "scene": "materials",
+      "api": "vulkan",
+      "stage": "tonemap",
+      "width": 1600,
+      "height": 900,
+      "sha256": "2dc930bd8bc1061309b524c210a642d1a5d488bfa354cae3c2db68fd5df4ae22"
+    },
+    {
+      "file": "deferred-normals.png",
+      "scene": "showcase",
+      "api": "d3d12",
+      "stage": "gbuffer1",
+      "width": 1600,
+      "height": 900,
+      "sha256": "686f605ceab86500b6656a2b75fad084c2c47df1ae0531e9cfe920525d3143cc"
+    },
+    {
+      "file": "deferred-basecolor.png",
+      "scene": "showcase",
+      "api": "d3d12",
+      "stage": "gbuffer2",
+      "width": 1600,
+      "height": 900,
+      "sha256": "b54ecd482819f6f599abfea5a8247727e56309b6a5d04bbc6cb07f8342cb64e9"
+    },
+    {
+      "file": "lighting-32-deferred.png",
+      "scene": "lights",
+      "api": "d3d12",
+      "stage": "tonemap",
+      "width": 1600,
+      "height": 900,
+      "lightingPath": "deferred",
+      "pointLights": 32,
+      "GTAO": false,
+      "TAA": false,
+      "sha256": "4bb1039ef32e5f3b6b54a8c579f537de0d3f5f73bb0979882106474dd7735971"
+    },
+    {
+      "file": "lighting-32-forward-plus.png",
+      "scene": "lights",
+      "api": "d3d12",
+      "stage": "tonemap",
+      "width": 1600,
+      "height": 900,
+      "lightingPath": "forward-plus",
+      "pointLights": 32,
+      "GTAO": false,
+      "TAA": false,
+      "sha256": "fdbb894a810d9f7501fd7e41beebe9717a64873c1848aa327ee66d8a64db7639"
+    },
+    {
+      "file": "lighting-4-deferred.png",
+      "scene": "lights",
+      "api": "d3d12",
+      "stage": "tonemap",
+      "width": 1600,
+      "height": 900,
+      "lightingPath": "deferred",
+      "pointLights": 4,
+      "GTAO": false,
+      "TAA": false,
+      "sha256": "906af92d5b4a57026c76a198c4622f2c55ac63778c3c0b8d59d29fce4a1942ea"
+    },
+    {
+      "file": "lighting-4-forward-plus.png",
+      "scene": "lights",
+      "api": "d3d12",
+      "stage": "tonemap",
+      "width": 1600,
+      "height": 900,
+      "lightingPath": "forward-plus",
+      "pointLights": 4,
+      "GTAO": false,
+      "TAA": false,
+      "sha256": "887681d32d865800ba7b7772e449c142f21ddf05aa37ba951a1bc3a957a0d180"
+    },
+    {
+      "file": "lighting-4-forward.png",
+      "scene": "lights",
+      "api": "d3d12",
+      "stage": "tonemap",
+      "width": 1600,
+      "height": 900,
+      "lightingPath": "forward",
+      "pointLights": 4,
+      "GTAO": false,
+      "TAA": false,
+      "sha256": "3e4424ebc74cecbd36ae37304dea6fe70ad35c9ba698f7eb20b5c3b4d63d35e5"
+    }
+  ]
+}

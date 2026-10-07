@@ -4,10 +4,39 @@
 #include "Renderer/RenderSettings.h"
 #include "Scene/DemoSceneCatalog.h"
 
+#include <iostream>
+#include <stdexcept>
 #include <string>
 
 namespace
 {
+void ApplyLightingAutomationOverrides(Prism::Renderer::RenderSettings& settings)
+{
+    const std::string path = Prism::Core::ReadEnvironmentVariableValue(
+        "PRISM_RENDER_LIGHTING_PATH");
+    if (path.empty())
+        return;
+    if (path != "forward" && path != "forward-plus" && path != "deferred")
+    {
+        throw std::invalid_argument(
+            "PRISM_RENDER_LIGHTING_PATH must be forward, forward-plus, or deferred.");
+    }
+
+    settings.deferredRenderingEnabled = path == "deferred";
+    settings.forwardPlusEnabled = path != "forward";
+    settings.clusteredLightingEnabled = true;
+    // Compare the common lighting workload: these effects require Deferred
+    // and would otherwise add work only when that path is selected.
+    settings.gtaoEnabled = false;
+    settings.temporalAntiAliasingEnabled = false;
+    std::clog << "[LightingBenchmark] path=" << path
+              << " deferred=" << (settings.deferredRenderingEnabled ? 1 : 0)
+              << " forwardPlus=" << (settings.forwardPlusEnabled ? 1 : 0)
+              << " GTAO=" << (settings.gtaoEnabled ? 1 : 0)
+              << " TAA=" << (settings.temporalAntiAliasingEnabled ? 1 : 0)
+              << '\n';
+}
+
 void ApplyOceanAutomationOverrides(Prism::Renderer::OceanSettings& ocean)
 {
     using namespace Prism::Renderer;
@@ -282,6 +311,7 @@ void ApplyDemoSceneSettings(
         settings.exposure = 0.88f;
         settings.bloomThreshold = 0.72f;
         settings.bloomIntensity = 0.42f;
+        ApplyLightingAutomationOverrides(settings);
         return;
 
     case Scene::DemoSceneId::GpuDrivenLab:

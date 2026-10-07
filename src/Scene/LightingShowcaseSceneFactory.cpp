@@ -1,5 +1,6 @@
 #include "Scene/LightingShowcaseSceneFactory.h"
 
+#include "Core/Environment.h"
 #include "Scene/DemoSceneBuilder.h"
 #include "Scene/RenderObject.h"
 #include "Scene/RenderScene.h"
@@ -7,8 +8,12 @@
 #include <DirectXMath.h>
 
 #include <algorithm>
+#include <charconv>
 #include <cmath>
+#include <iostream>
+#include <stdexcept>
 #include <string>
+#include <system_error>
 
 namespace Prism::Scene
 {
@@ -23,6 +28,25 @@ constexpr std::uint32_t LightRows = 4;
 constexpr std::uint32_t LightColumns = 8;
 constexpr std::uint32_t SubjectCount = SubjectRows * SubjectColumns;
 constexpr std::uint32_t LightCount = LightRows * LightColumns;
+
+std::uint32_t ReadActiveLightCount()
+{
+    const std::string value = Core::ReadEnvironmentVariableValue(
+        "PRISM_RENDER_LIGHTING_COUNT");
+    if (value.empty())
+        return LightCount;
+
+    std::uint32_t count = 0;
+    const auto [end, error] = std::from_chars(
+        value.data(), value.data() + value.size(), count);
+    if (error != std::errc{} || end != value.data() + value.size()
+        || count == 0 || count > LightCount)
+    {
+        throw std::invalid_argument(
+            "PRISM_RENDER_LIGHTING_COUNT must be an integer from 1 to 32.");
+    }
+    return count;
+}
 
 XMFLOAT3 HsvToRgb(const float hue)
 {
@@ -49,6 +73,7 @@ LightingShowcaseSceneSummary LightingShowcaseSceneFactory::Populate(
     RHI::IGraphicsDevice& device,
     RenderScene& scene)
 {
+    const std::uint32_t activeLightCount = ReadActiveLightCount();
     scene.ClearRenderObjects();
     DemoSceneBuilder::ResetLights(scene);
 
@@ -203,13 +228,21 @@ LightingShowcaseSceneSummary LightingShowcaseSceneFactory::Populate(
             marker.materialOverride.useEmissiveTexture = false;
         }
     }
-    scene.SetActivePointLightCount(LightCount);
+    // Keep every marker mesh so changing the active lights does not change
+    // geometry, draw submission, or the camera in pipeline comparisons.
+    scene.SetActivePointLightCount(activeLightCount);
     scene.SetActiveSpotLightCount(0);
+    if (!Core::ReadEnvironmentVariableValue("PRISM_RENDER_LIGHTING_COUNT").empty())
+    {
+        std::clog << "[LightingBenchmark] pointLights="
+                  << scene.GetActivePointLightCount()
+                  << " objects=" << scene.GetRenderObjects().size() << '\n';
+    }
 
     return {
         static_cast<std::uint32_t>(scene.GetRenderObjects().size()),
         SubjectCount,
-        LightCount};
+        activeLightCount};
 }
 
 void LightingShowcaseSceneFactory::ConfigureWorld(

@@ -1,0 +1,919 @@
+{
+  "format": "PrismRenderingPathSummary",
+  "version": 1,
+  "backend": "d3d12",
+  "scene": "lights",
+  "width": 1600,
+  "height": 900,
+  "warmupFrames": 120,
+  "sampleFrames": 600,
+  "drainFrames": 8,
+  "repetitions": 3,
+  "binarySha256": "B71CCE3A6B74AD4BC4163947ED957B3CF9245D4B5936E464027B4867E3E4001F",
+  "identity": {
+    "adapterName": "NVIDIA GeForce RTX 5060",
+    "apiVersion": "D3D_FEATURE_LEVEL_12_0",
+    "architecture": "x64",
+    "buildConfiguration": "RelWithDebInfo",
+    "compiler": "MSVC 195136257",
+    "cpuName": "13th Gen Intel(R) Core(TM) i5-13600KF",
+    "dedicatedVideoMemoryBytes": 8278507520,
+    "deviceId": 11525,
+    "driverVersion": "32.0.15.9186",
+    "driverVersionRaw": 9007199255733218,
+    "executableHash": "c0bae879e0449b61",
+    "graphicsApi": "d3d12",
+    "rhiExecutionMode": "native-direct",
+    "rhiNativeFrameHandoff": "prepared",
+    "shaderFileCount": 267,
+    "shaderRevision": "b81fa27e32b299f9",
+    "sharedSystemMemoryBytes": 17097293824,
+    "vendorId": 4318,
+    "workerCount": 19
+  },
+  "startedUtc": "2026-10-07T16:33:36.2429145Z",
+  "finishedUtc": "2026-10-07T16:37:32.3787229Z",
+  "quantiles": "median-average-middle; p95-nearest-rank",
+  "aggregation": "median of per-run statistics; min/max show inter-run spread",
+  "gpuAssociation": "source frame ID; warmup excluded; drain rows resolve measurement tail",
+  "conditions": {
+    "pointLights": [
+      4,
+      32
+    ],
+    "objects": 84,
+    "subjects": 48,
+    "editor": false,
+    "validation": false,
+    "profiling": "basic",
+    "GTAO": false,
+    "TAA": false,
+    "SSR": false,
+    "localLightShadows": false,
+    "CSM": true,
+    "IBL": true,
+    "Bloom": true,
+    "gpuClocksLocked": false,
+    "rhiExecution": "native-direct"
+  },
+  "cases": [
+    {
+      "path": "forward",
+      "lightCount": 4,
+      "gpuMedianMs": {
+        "median": 0.7975200116634369,
+        "minimum": 0.4986880123615265,
+        "maximum": 0.8553920090198517
+      },
+      "gpuP95Ms": {
+        "median": 2.2299840450286865,
+        "minimum": 0.9038079977035522,
+        "maximum": 2.2444798946380615
+      },
+      "applicationLoopMedianMs": {
+        "median": 3.88145,
+        "minimum": 1.9917500000000001,
+        "maximum": 4.0561
+      },
+      "presentIntervalMedianMs": {
+        "median": 3.883,
+        "minimum": 1.9988,
+        "maximum": 4.0619
+      }
+    },
+    {
+      "path": "forward-plus",
+      "lightCount": 4,
+      "gpuMedianMs": {
+        "median": 0.9160640239715576,
+        "minimum": 0.9118880033493042,
+        "maximum": 0.9764800071716309
+      },
+      "gpuP95Ms": {
+        "median": 2.6573119163513184,
+        "minimum": 2.645024061203003,
+        "maximum": 2.8375039100646973
+      },
+      "applicationLoopMedianMs": {
+        "median": 4.1781500000000005,
+        "minimum": 4.1129999999999995,
+        "maximum": 4.308999999999999
+      },
+      "presentIntervalMedianMs": {
+        "median": 4.173,
+        "minimum": 4.1057,
+        "maximum": 4.309200000000001
+      }
+    },
+    {
+      "path": "deferred",
+      "lightCount": 4,
+      "gpuMedianMs": {
+        "median": 0.9628320038318634,
+        "minimum": 0.8809599876403809,
+        "maximum": 1.0329279899597168
+      },
+      "gpuP95Ms": {
+        "median": 2.82806396484375,
+        "minimum": 2.7472000122070312,
+        "maximum": 2.892672061920166
+      },
+      "applicationLoopMedianMs": {
+        "median": 4.4953,
+        "minimum": 4.47285,
+        "maximum": 4.497299999999999
+      },
+      "presentIntervalMedianMs": {
+        "median": 4.4883500000000005,
+        "minimum": 4.46715,
+        "maximum": 4.4986
+      }
+    },
+    {
+      "path": "forward-plus",
+      "lightCount": 32,
+      "gpuMedianMs": {
+        "median": 1.0716639757156372,
+        "minimum": 0.764415979385376,
+        "maximum": 1.1510080099105835
+      },
+      "gpuP95Ms": {
+        "median": 2.828320026397705,
+        "minimum": 2.5960640907287598,
+        "maximum": 2.836672067642212
+      },
+      "applicationLoopMedianMs": {
+        "median": 4.0899,
+        "minimum": 4.0739,
+        "maximum": 4.25765
+      },
+      "presentIntervalMedianMs": {
+        "median": 4.099,
+        "minimum": 4.07,
+        "maximum": 4.272
+      }
+    },
+    {
+      "path": "deferred",
+      "lightCount": 32,
+      "gpuMedianMs": {
+        "median": 1.1276800036430359,
+        "minimum": 0.9721440076828003,
+        "maximum": 1.137935996055603
+      },
+      "gpuP95Ms": {
+        "median": 2.8599040508270264,
+        "minimum": 2.6683199405670166,
+        "maximum": 2.940704107284546
+      },
+      "applicationLoopMedianMs": {
+        "median": 4.588,
+        "minimum": 4.5175,
+        "maximum": 4.6118500000000004
+      },
+      "presentIntervalMedianMs": {
+        "median": 4.585,
+        "minimum": 4.5165500000000005,
+        "maximum": 4.61015
+      }
+    }
+  ],
+  "runs": [
+    {
+      "label": "d3d12-lights4-forward-r1",
+      "path": "forward",
+      "lightCount": 4,
+      "repetition": 1,
+      "order": 1,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.4986880123615265,
+          "p95": 0.9038079977035522,
+          "mean": 0.5613969597717127
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 1.9917500000000001,
+          "p95": 2.8927,
+          "mean": 2.1164853333333333
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 1.9988,
+          "p95": 2.8845,
+          "mean": 2.1164981666666667
+        }
+      },
+      "framesSha256": "BAF35B503322016C8A9FDB025AD58E3D7DFCEA4004856AE7F2DA7705DE8A21AD",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-forward-plus-r1",
+      "path": "forward-plus",
+      "lightCount": 4,
+      "repetition": 1,
+      "order": 2,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.9160640239715576,
+          "p95": 2.645024061203003,
+          "mean": 1.2402543448408445
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.1781500000000005,
+          "p95": 4.9979,
+          "mean": 4.246682166666667
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.173,
+          "p95": 4.9836,
+          "mean": 4.246317333333334
+        }
+      },
+      "framesSha256": "EABC4E48357F094E956EF6728658CE78B4877145F1CE07A7B70CD696BF4E8258",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-deferred-r1",
+      "path": "deferred",
+      "lightCount": 4,
+      "repetition": 1,
+      "order": 3,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 1.0329279899597168,
+          "p95": 2.82806396484375,
+          "mean": 1.3397643199563027
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.4953,
+          "p95": 5.2746,
+          "mean": 4.538101166666666
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.4883500000000005,
+          "p95": 5.2807,
+          "mean": 4.5382815
+        }
+      },
+      "framesSha256": "B38A894CF592BD9337548D994FCB2DB0C3301D0955E14D06FFD8133AB0B1FCCD",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights32-forward-plus-r1",
+      "path": "forward-plus",
+      "lightCount": 32,
+      "repetition": 1,
+      "order": 1,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 1.1510080099105835,
+          "p95": 2.828320026397705,
+          "mean": 1.4173106106122335
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.0739,
+          "p95": 4.8032,
+          "mean": 4.137812333333334
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.07,
+          "p95": 4.7805,
+          "mean": 4.138471833333333
+        }
+      },
+      "framesSha256": "DAF9C4170C3D91D8A7217582FD6C66DD2E0F75CD3FA019F8A0775708C20A75EA",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights32-deferred-r1",
+      "path": "deferred",
+      "lightCount": 32,
+      "repetition": 1,
+      "order": 2,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 1.137935996055603,
+          "p95": 2.8599040508270264,
+          "mean": 1.382181813220183
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.5175,
+          "p95": 5.3965,
+          "mean": 4.582881333333333
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.5165500000000005,
+          "p95": 5.4103,
+          "mean": 4.583654666666667
+        }
+      },
+      "framesSha256": "22A38BE9BB9488C25753BAB4C3ACAFBDB6F1065C0C11E6D1D781510593057B7D",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-forward-plus-r2",
+      "path": "forward-plus",
+      "lightCount": 4,
+      "repetition": 2,
+      "order": 1,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.9118880033493042,
+          "p95": 2.8375039100646973,
+          "mean": 1.2658474696675936
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.308999999999999,
+          "p95": 5.1054,
+          "mean": 4.402510833333333
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.309200000000001,
+          "p95": 5.1612,
+          "mean": 4.4027536666666665
+        }
+      },
+      "framesSha256": "C63CC662AD01F4F889F927B5E6058CE76578E97CDA2237F1EBDBBB8B835B8F40",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-deferred-r2",
+      "path": "deferred",
+      "lightCount": 4,
+      "repetition": 2,
+      "order": 2,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.8809599876403809,
+          "p95": 2.7472000122070312,
+          "mean": 1.2228209076325098
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.47285,
+          "p95": 5.8612,
+          "mean": 4.6762638333333335
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.46715,
+          "p95": 5.8281,
+          "mean": 4.677361
+        }
+      },
+      "framesSha256": "DA98A409AD3626F8C9C3F0DD1C24E91E4EFF73B990596E8B0D2F6F86DC3CA1A7",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-forward-r2",
+      "path": "forward",
+      "lightCount": 4,
+      "repetition": 2,
+      "order": 3,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.7975200116634369,
+          "p95": 2.2299840450286865,
+          "mean": 1.010368638932705
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.0561,
+          "p95": 4.9845,
+          "mean": 4.129155333333333
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.0619,
+          "p95": 4.9669,
+          "mean": 4.129932
+        }
+      },
+      "framesSha256": "CD31F996732A54BCE5CEC644CEC7885574B6A8E05265A5524FAA63C9F38B62F1",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights32-deferred-r2",
+      "path": "deferred",
+      "lightCount": 32,
+      "repetition": 2,
+      "order": 1,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 1.1276800036430359,
+          "p95": 2.940704107284546,
+          "mean": 1.4120317322015763
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.6118500000000004,
+          "p95": 5.4054,
+          "mean": 4.656007166666667
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.61015,
+          "p95": 5.4329,
+          "mean": 4.6555081666666664
+        }
+      },
+      "framesSha256": "F4F4414C85E5D23F61F4FA759F467EF329C5A26C4446FE1FD9DEFD512A72DBCE",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights32-forward-plus-r2",
+      "path": "forward-plus",
+      "lightCount": 32,
+      "repetition": 2,
+      "order": 2,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.764415979385376,
+          "p95": 2.5960640907287598,
+          "mean": 1.0600950926542283
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.0899,
+          "p95": 4.8408,
+          "mean": 4.1594055
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.099,
+          "p95": 4.8704,
+          "mean": 4.161472333333333
+        }
+      },
+      "framesSha256": "01F05E50F2992064DFBCF8D22369410F34D8AEB91C6DDC4AB73EB74A486100F9",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-deferred-r3",
+      "path": "deferred",
+      "lightCount": 4,
+      "repetition": 3,
+      "order": 1,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.9628320038318634,
+          "p95": 2.892672061920166,
+          "mean": 1.2999222938219706
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.497299999999999,
+          "p95": 5.2429,
+          "mean": 4.5635493333333335
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.4986,
+          "p95": 5.2558,
+          "mean": 4.563296666666667
+        }
+      },
+      "framesSha256": "EC395FAD2393ABA5C1BC80EF406F581B3FD0A946CFE9BA5318FF5BE7B50D9950",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-forward-r3",
+      "path": "forward",
+      "lightCount": 4,
+      "repetition": 3,
+      "order": 2,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.8553920090198517,
+          "p95": 2.2444798946380615,
+          "mean": 1.0431664540370305
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 3.88145,
+          "p95": 4.5914,
+          "mean": 3.9467186666666665
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 3.883,
+          "p95": 4.6075,
+          "mean": 3.9462896666666665
+        }
+      },
+      "framesSha256": "1DB714266041FDB643C459E41CF9AE07A5A8A9E43A2B5BCC7931F89B3D636842",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights4-forward-plus-r3",
+      "path": "forward-plus",
+      "lightCount": 4,
+      "repetition": 3,
+      "order": 3,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.9764800071716309,
+          "p95": 2.6573119163513184,
+          "mean": 1.2375938138365745
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.1129999999999995,
+          "p95": 5.0085,
+          "mean": 4.201403666666667
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.1057,
+          "p95": 5.0228,
+          "mean": 4.200889666666667
+        }
+      },
+      "framesSha256": "FB08106103C9C9B9343E9EF8A35236096A84ED3CE05EF6C5D3F35DEF02CCC478",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights32-forward-plus-r3",
+      "path": "forward-plus",
+      "lightCount": 32,
+      "repetition": 3,
+      "order": 1,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 1.0716639757156372,
+          "p95": 2.836672067642212,
+          "mean": 1.3794994670152665
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.25765,
+          "p95": 5.0276,
+          "mean": 4.316322166666667
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.272,
+          "p95": 5.0151,
+          "mean": 4.316010833333333
+        }
+      },
+      "framesSha256": "D1EFEEBFC97F363E06C4A4F517949BD3261D29CF9481743DB30390E18C9867B4",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    },
+    {
+      "label": "d3d12-lights32-deferred-r3",
+      "path": "deferred",
+      "lightCount": 32,
+      "repetition": 3,
+      "order": 2,
+      "metrics": {
+        "gpuMs": {
+          "count": 600,
+          "median": 0.9721440076828003,
+          "p95": 2.6683199405670166,
+          "mean": 1.2609082130591074
+        },
+        "applicationLoopMs": {
+          "count": 600,
+          "median": 4.588,
+          "p95": 5.2974,
+          "mean": 4.623919166666667
+        },
+        "presentIntervalMs": {
+          "count": 600,
+          "median": 4.585,
+          "p95": 5.2931,
+          "mean": 4.624878166666667
+        }
+      },
+      "framesSha256": "637C13889B371EFA5974D8DF155BAC0A064F19394CB2AE42A7D535EF9CF465AD",
+      "pacing": {
+        "admissionSource": "frame-queue-fallback",
+        "available": true,
+        "configuredMaxQueuedFrames": 2,
+        "effectiveGeneration": 1,
+        "effectiveMaxQueuedFrames": 2,
+        "effectivePresentation": "immediate",
+        "fallbackReason": "",
+        "frameResourceSlotCount": 2,
+        "nativePresentMode": "DXGI_FLIP_DISCARD",
+        "presentFlags": 512,
+        "profile": "benchmark",
+        "requestedGeneration": 1,
+        "requestedPresentation": "immediate",
+        "swapchainImageCount": 2,
+        "syncInterval": 0,
+        "targetFps": null,
+        "tearingEnabled": true,
+        "tearingSupported": true,
+        "transitionPending": false
+      }
+    }
+  ],
+  "samplesSha256": "342421C9FC564FCD6CC6ED39C74AFCB65BD8BB57DFB0299CED70B978041B1AE1"
+}
