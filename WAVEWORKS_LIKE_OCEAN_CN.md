@@ -135,7 +135,7 @@ h(k,t) = h0(k) exp(iωt) + conjugate(h0(-k)) exp(-iωt)
 
 | 输出数组 | RGBA 通道 | 后续使用位置 |
 |---|---|---|
-| displacement | Dx、Dy、高度、0 | DS 位移 |
+| displacement | Dx、Dy、高度、0 | VS 位移 |
 | gradients | 坡度 X、坡度 Y、Jacobian、旧泡沫历史 | PS 法线与泡沫 |
 | moments | 坡度 X²、坡度 Y²、坡度 X×Y、1 | PS 微表面分布 |
 
@@ -147,7 +147,7 @@ h(k,t) = h0(k) exp(iωt) + conjugate(h0(-k)) exp(-iωt)
 
 局部波另外维护 512² 状态，经扰动注入、正向 FFT、重力—毛细频域传播和逆 FFT 输出位移。参考 EID 32 的传播指令中包含 `sqrt(9.81k + 0.000074k³)`：前一项来自重力，后一项来自毛细作用，因此这里实现的是频域传播，没有按浅水有限差分去替代它。
 
-混合场景从参考局部初始状态继续传播，再在 DS 和 PS 中与风浪合并。风浪按实际经过时间推进，支持暂停和播放速度；Game 与 Scene 共享同一逻辑帧的模拟结果，避免双视图把时间推进两次。
+混合场景从参考局部初始状态继续传播，再在 VS 和 PS 中与风浪合并。风浪按实际经过时间推进，支持暂停和播放速度；Game 与 Scene 共享同一逻辑帧的模拟结果，避免双视图把时间推进两次。
 
 ![项目位移与表面调试](Img/WaveWorksLikeOcean/Hybrid/surface-debug.png)
 
